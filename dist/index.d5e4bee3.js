@@ -21894,9 +21894,9 @@ class MainView extends _reactDefault.default.Component {
         });
     }
     render() {
-        const { movies , selectedMovie  } = this.state;
+        const { movies , selectedMovie , user  } = this.state;
         if (!user) return(/*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
-            onLoggedIn: (user)=>this.onLoggedIn(user)
+            onLoggedIn: (user1)=>this.onLoggedIn(user1)
             ,
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/main-view/main-view.jsx",
@@ -23334,7 +23334,7 @@ function LoginView(props) {
     _s();
     const [username, setUsername] = _react.useState('');
     const [password, setPassword] = _react.useState('');
-    const handleSubmit = ()=>{
+    const handleSubmit = (e)=>{
         e.preventDefault();
         console.log(username, password);
         props.onLoggedIn(username);
