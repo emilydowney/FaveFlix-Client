@@ -1,0 +1,26 @@
+html, div {
+  background-color: #000000;
+}
+
+.login {
+  padding: 40px;
+  box-shadow: 0px 0px 78px 4px rgba(16, 134, 232, 0.73);
+}
+
+.login, .form-group {
+  background-color: #ffffff;
+  font-family: "Montserrat";
+}
+
+.title {
+  color: #ffffff;
+  font-family: "Oswald";
+  text-align: center;
+}
+.main-view {
+  background-color: black;
+}
+.my-flix {
+  color: steelblue;
+}
+/*# sourceMappingURL=index.ea1d974f.css.map */
