@@ -1,25 +1,57 @@
-html, div {
-  background-color: #000000;
+html, div.app-container {
+  background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+}
+
+div {
+  font-family: "Montserrat";
+}
+
+.container {
+  margin-top: 2%;
+  padding-bottom: 5%;
 }
 
 .login {
   padding: 40px;
-  box-shadow: 0px 0px 78px 4px rgba(16, 134, 232, 0.73);
+  max-width: 900px;
+  margin: auto;
 }
 
 .login, .form-group {
   background-color: #ffffff;
-  font-family: "Montserrat";
+  color: #000;
+  opacity: 90%;
+}
+
+#formUsername, #formPassword {
+  width: 50%;
+}
+
+.welcome {
+  color: #000;
+  border: 1px solid #ffffff;
+  background: #ffffff;
+  padding: 40px;
+  max-width: 900px;
+  margin: auto;
 }
 
 .title {
-  color: #ffffff;
+  color: #1188a3;
   font-family: "Oswald";
-  text-align: center;
 }
-.main-view {
-  background-color: black;
+
+.btn-primary {
+  margin-right: 5px;
 }
+.card-img-top {
+  height: 400px;
+}
+
+div.card-title.h5 {
+  font-family: "Oswald";
+}
+
 .my-flix {
   color: steelblue;
 }

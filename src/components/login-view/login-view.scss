@@ -1,24 +1,53 @@
-$primary-color: #000000;
+$primary-color: #1188a3;
 $secondary-color: #ffffff;
+$third-color: #000;
 $header-font: 'Oswald';
 $body-font: 'Montserrat';
 
-html, div {
-  background-color: $primary-color;
+html, div.app-container {
+  background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+}
+
+div {
+  font-family: $body-font;
+}
+
+.container {
+  margin-top: 2%;
+  padding-bottom: 5%;
 }
 
 .login {
   padding: 40px;
-  box-shadow: 0px 0px 78px 4px rgba(16, 134, 232, 0.73)
+  max-width: 900px;
+  margin: auto;
 }
 
 .login, .form-group {
   background-color: $secondary-color;
-  font-family: $body-font;
+  color: $third-color;
+  opacity: 90%;
+}
+
+#formUsername, #formPassword {
+  width: 50%;
+}
+
+.welcome {
+  color: $third-color;
+  border: 1px solid $secondary-color;
+  background: $secondary-color;
+  padding: 40px;
+  max-width: 900px;
+  margin: auto;
 }
 
 .title {
-  color: $secondary-color;
+  color: $primary-color;
   font-family: $header-font;
-  text-align: center;
+
+}
+
+.btn-primary {
+  margin-right: 5px;
 }
