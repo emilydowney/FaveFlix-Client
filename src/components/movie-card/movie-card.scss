@@ -1,8 +1,18 @@
+$secondary-color: #fff;
 $header-font: 'Oswald';
 $body-font: 'Montserrat';
 
-.card-img-top {
-  height: 400px;
+.movie-info.card {
+  margin-top: 50px;
+}
+
+.image {
+  max-height: 500px;
+}
+
+div.card-body {
+  background-color: $secondary-color;
+  z-index: 5;
 }
 
 div.card-title.h5{

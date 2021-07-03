@@ -1,5 +1,22 @@
-$color: steelblue;
+$primary-color: #1188a3;
+$secondary-color: #0f7b8e;
+$secondary-button: #353535;
 
-.my-flix {
-  color: $color;
+button.btn.btn-primary {
+  background-color: $primary-color;
+}
+
+button.btn.btn-primary:hover {
+  background-color: $secondary-color;
+  transition: 0.5s, ease-in;
+}
+
+button.btn.btn-secondary {
+  margin-top: 10px;
+  background-color: $secondary-button;
+}
+
+button.btn.btn-secondary:hover {
+  background-color: #2a2b2b;
+  transition: 0.5s, ease-in;
 }

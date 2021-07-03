@@ -1,0 +1,33 @@
+$primary-color: #1188a3;
+$secondary-color: #ffffff;
+$third-color: #000;
+$header-font: 'Oswald';
+$body-font: 'Montserrat';
+
+.navbar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  width: 100%;
+}
+
+.navbar-brand {
+  margin-left: 5px;
+}
+
+img.d-inline-block.align-top {
+  margin-right: 10px;
+}
+
+button.btn.btn-outline-primary {
+  color: $primary-color;
+  border-color: $primary-color;
+}
+
+button.btn.btn-outline-primary:hover {
+  color: $secondary-color;
+  border-color: $secondary-color;
+  background-color: $primary-color;
+  transition: 0.2s ease-in;
+} 
