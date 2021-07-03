@@ -1,4 +1,4 @@
-.navbar {
+.navbar.navbar-expand-lg.navbar-light.bg-light {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -81,6 +81,7 @@ div.login.row {
 #img {
   text-align: center;
 }
+
 .movie-info.card {
   margin-top: 50px;
 }
@@ -114,6 +115,7 @@ h5.movie-title {
 
 button.btn.btn-primary {
   margin-top: 10px;
+  border-color: #1188a3;
 }
 
 button.btn.btn-primary {

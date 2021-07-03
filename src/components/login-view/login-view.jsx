@@ -4,7 +4,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import logo from '../../imgs/movieicon.svg';
 
 import './login-view.scss'
 
@@ -17,8 +16,6 @@ export function LoginView(props) {
     console.log(username, password);
     props.onLoggedIn(username);
   };
-
-  const mainLogo = <img src={logo} />;
 
   return (
     <div className="container">
