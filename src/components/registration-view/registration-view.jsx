@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import './registration-view.scss';
+import axios from 'axios';
 
 export function RegistrationView(props) {
   const [username, setUsername] = useState('');
@@ -16,6 +17,21 @@ export function RegistrationView(props) {
     e.preventDefault();
     console.log(username, password, email, birthday);
   };
+
+  axios.post('https://a-movies-api.herokuapp.com/users', {
+    Username: username,
+    Password: password,
+    Email: email,
+    Birthday: birthday
+  })
+    .then(response => {
+      const data = response.data;
+      console.log(data);
+      window.open('/', '_self');
+    })
+    .catch(e => {
+      console.log('error registering the user')
+    });
 
   return (
     <Row>
