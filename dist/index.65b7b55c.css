@@ -118,6 +118,25 @@ button.btn.btn-primary {
   border-color: #1188a3;
 }
 
+h5.director-name {
+  font-family: "Oswald";
+  font-size: 32px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.director-view {
+  background-color: #ffffff;
+  margin-top: 50px;
+  padding: 20px;
+}
+
+button.btn.btn-primary {
+  margin-top: 10px;
+  border-color: #1188a3;
+}
 button.btn.btn-primary {
   background-color: #1188a3;
 }

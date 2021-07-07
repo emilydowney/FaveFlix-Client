@@ -1,0 +1,25 @@
+$primary-color: #1188a3;
+$secondary-color: #ffffff;
+$third-color: #000;
+$header-font: 'Oswald';
+$body-font: 'Montserrat';
+
+h5.director-name {
+  font-family: $header-font;
+  font-size: 32px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.director-view {
+  background-color: $secondary-color;
+  margin-top: 50px;
+  padding: 20px;
+}
+
+button.btn.btn-primary {
+  margin-top: 10px;
+  border-color: $primary-color;
+}

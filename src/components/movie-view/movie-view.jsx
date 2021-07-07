@@ -18,7 +18,6 @@ export class MovieView extends React.Component {
         </Col>
         <Col md={6}>
           <h5 className="movie-title">
-            <span className="label">Title: </span>
             <span className="value">{movie.Title}</span>
           </h5>
           <div className="movie-year">
