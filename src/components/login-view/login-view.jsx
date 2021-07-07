@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-import { RegistrationView } from '../registration-view/registration-view';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
@@ -50,7 +50,10 @@ export function LoginView(props) {
 
             <Button variant="primary" type="submit" onClick={handleSubmit}>Login
             </Button>
-            <Button variant="secondary">Create Account</Button>
+
+            <Link to={`/register`}>
+              <Button variant="secondary" >Create Account</Button>
+            </Link>
           </Form>
         </Col>
         <Col id="img" md={6}>

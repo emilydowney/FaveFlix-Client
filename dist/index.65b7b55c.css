@@ -25,7 +25,6 @@ button.btn.btn-outline-primary:hover {
   background-color: #1188a3;
   transition: 0.2s ease-in;
 }
-
 html, div.app-container {
   background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
 }
@@ -82,6 +81,13 @@ div.login.row {
 #img {
   text-align: center;
 }
+div.registration-view.col {
+  top: 50px;
+  max-width: 900px;
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 0 auto;
+}
 .movie-info.card {
   margin-top: 50px;
 }
@@ -137,6 +143,7 @@ button.btn.btn-primary {
   margin-top: 10px;
   border-color: #1188a3;
 }
+
 button.btn.btn-primary {
   background-color: #1188a3;
 }

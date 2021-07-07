@@ -35,7 +35,7 @@ export function RegistrationView(props) {
 
   return (
     <Row>
-      <Col>
+      <Col className="registration-view">
         <Form>
           <Form.Group>
             <label>
