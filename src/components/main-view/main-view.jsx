@@ -1,11 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
+import { Navbar, Row, Col, Button, Form, FormControl } from 'react-bootstrap';
 
 import { Nav } from '../navbar-view/navbar-view';
 import { LoginView } from '../login-view/login-view';
@@ -24,7 +22,8 @@ export class MainView extends React.Component {
     // Sets initial states to null
     this.state = {
       movies: [],
-      user: null
+      user: null,
+      users: []
     };
   }
 
@@ -53,6 +52,7 @@ export class MainView extends React.Component {
       });
   }
 
+
   // Updates 'user' property in state upon login
   onLoggedIn(authData) {
     console.log(authData);
@@ -79,7 +79,28 @@ export class MainView extends React.Component {
     return (
       <Router>
         <Row>
-          <Nav />
+
+          <Navbar bg="light" expand="lg" variant="light">
+            <Navbar.Brand>
+              <img className="logo" src="https://cdn4.iconfinder.com/data/icons/online-marketing-hand-drawn-vol-1/52/cinema__movie__reel__video__videoreel__film__media-1024.png" width="30" height="30" className="d-inline-block align-top" alt="" />
+              FaveFlix
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto">
+                <Link to="/">Home</Link>
+                <Link to="/">Movies</Link>
+                <Link to="/users/:username">Account</Link>
+                <Link to="/">
+                  <Button variant="link" onClick={() => this.onLoggedOut()}>Logout</Button>
+                </Link>
+              </Nav>
+              <Form inline>
+                <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                <Button variant="outline-primary">Search</Button>
+              </Form>
+            </Navbar.Collapse>
+          </Navbar >
         </Row>
         <Row className="main-view justify-content-md-center">
           <Route exact path="/" render={() => {
@@ -91,11 +112,10 @@ export class MainView extends React.Component {
             if (movies.length === 0) return <div className="main-view" />;
 
             return movies.map(m => (
-              <Col md={8} key={m._id}>
+              <Col md={4} key={m._id}>
                 <MovieCard movie={m} />
               </Col>
             ))
-            //<Button onClick = {() => {this.onLoggedOut()}}>Logout</Button>
           }} />
 
           <Route path="/register" render={() => {
@@ -132,6 +152,17 @@ export class MainView extends React.Component {
             if (movies.length === 0) return <div className="main-view" />;
             return <Col md={8}>
               <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} onBackClick={() => history.goBack()} />
+            </Col>
+          }} />
+
+          <Route path="/users/:username" render={({ match, history }) => {
+            if (!user) return <Col>
+              <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+            </Col>
+            if (movies.length === 0) return <div className="main-view" />;
+            return <Col md={8}>
+              <UserView onLoggedIn={user => this.onLoggedIn(user)}
+                user={user} onBackClick={() => history.goBack()} />
             </Col>
           }} />
         </Row>
