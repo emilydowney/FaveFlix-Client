@@ -12,7 +12,7 @@ export class DirectorView extends React.Component {
 
     return (
       <Row className="director-view">
-        <Col md={8}>
+        <Col md={11}>
           <h5 className="director-name">
             <span className="value">{director.Name}</span>
           </h5>

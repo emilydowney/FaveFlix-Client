@@ -7,7 +7,7 @@ div {
 }
 
 .container {
-  margin-top: 2%;
+  margin-top: 30px;
   background-color: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
 }
 
@@ -54,8 +54,15 @@ div.login.row {
 #img {
   text-align: center;
 }
+div.registration-view.col {
+  top: 50px;
+  max-width: 900px;
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 0 auto;
+}
 .movie-info.card {
-  margin-top: 10px;
+  margin-top: 50px;
 }
 
 .image {
@@ -77,6 +84,7 @@ h5.movie-title {
 
 .movie-view {
   background-color: #ffffff;
+  margin-top: 50px;
   padding: 20px;
 }
 
@@ -86,6 +94,74 @@ h5.movie-title {
 
 button.btn.btn-primary {
   margin-top: 10px;
+  border-color: #1188a3;
+}
+h5.director-name {
+  font-family: "Oswald";
+  font-size: 32px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.director-view {
+  background-color: #ffffff;
+  margin-top: 50px;
+  padding: 20px;
+}
+
+button.btn.btn-primary {
+  margin-top: 10px;
+  border-color: #1188a3;
+}
+h5.genre-name {
+  font-family: "Oswald";
+  font-size: 32px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.genre-view {
+  background-color: #ffffff;
+  margin-top: 50px;
+  padding: 20px;
+  width: 100%;
+}
+
+button.btn.btn-primary {
+  margin-top: 10px;
+  border-color: #1188a3;
+}
+
+.navbar.navbar-expand-lg.navbar-light.bg-light {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  width: 100%;
+}
+
+.navbar-brand {
+  margin-left: 5px;
+}
+
+img.d-inline-block.align-top {
+  margin-right: 10px;
+}
+
+button.btn.btn-outline-primary {
+  color: #1188a3;
+  border-color: #1188a3;
+}
+
+button.btn.btn-outline-primary:hover {
+  color: #0f7b8e;
+  border-color: #0f7b8e;
+  background-color: #1188a3;
+  transition: 0.2s ease-in;
 }
 
 button.btn.btn-primary {

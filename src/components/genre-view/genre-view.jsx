@@ -12,7 +12,7 @@ export class GenreView extends React.Component {
 
     return (
       <Row className="genre-view">
-        <Col md={8}>
+        <Col md={11}>
           <h5 className="genre-name">
             <span className="value">{genre.Name}</span>
           </h5>

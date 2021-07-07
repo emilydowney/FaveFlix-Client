@@ -3,9 +3,8 @@ import axios from 'axios';
 
 import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 
-import { Navbar, Row, Col, Button, Form, FormControl } from 'react-bootstrap';
+import { Nav, Navbar, Row, Col, Button, Form, FormControl } from 'react-bootstrap';
 
-import { Nav } from '../navbar-view/navbar-view';
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { MovieCard } from '../movie-card/movie-card';
@@ -52,6 +51,19 @@ export class MainView extends React.Component {
       });
   }
 
+  getUser(token) {
+    axios.get('https://a-movies-api.herokuapp.com/users/${user.username}', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        this.setState({
+          user: response.data
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   // Updates 'user' property in state upon login
   onLoggedIn(authData) {
@@ -88,11 +100,11 @@ export class MainView extends React.Component {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
-                <Link to="/">Home</Link>
-                <Link to="/">Movies</Link>
-                <Link to="/users/:username">Account</Link>
+                <Link className="nav-link" to="/">Home</Link>
+                <Link className="nav-link" to="/">Movies</Link>
+                <Link className="nav-link" to="/users/{username}">Profile</Link>
                 <Link to="/">
-                  <Button variant="link" onClick={() => this.onLoggedOut()}>Logout</Button>
+                  <Button variant="link" className="nav-link" onClick={() => this.onLoggedOut()}>Logout</Button>
                 </Link>
               </Nav>
               <Form inline>
@@ -130,7 +142,7 @@ export class MainView extends React.Component {
               <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
             </Col>
             if (movies.length === 0) return <div className="main-view" />;
-            return <Col md={4}>
+            return <Col md={8}>
               <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
             </Col>
           }} />
