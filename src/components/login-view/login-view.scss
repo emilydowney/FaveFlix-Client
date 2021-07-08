@@ -13,7 +13,7 @@ div {
 }
 
 .container {
-  margin-top: 30px;
+  margin-top: 35px;
   background-color: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
 }
 
@@ -46,7 +46,10 @@ div.login.row {
 .title {
   color: $primary-color;
   font-family: $header-font;
+}
 
+#formUsername, #formPassword {
+  width: 100%;
 }
 
 .btn-primary {

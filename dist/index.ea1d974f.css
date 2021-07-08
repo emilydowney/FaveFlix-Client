@@ -7,7 +7,7 @@ div {
 }
 
 .container {
-  margin-top: 30px;
+  margin-top: 35px;
   background-color: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
 }
 
@@ -42,6 +42,10 @@ div.login.row {
   font-family: "Oswald";
 }
 
+#formUsername, #formPassword {
+  width: 100%;
+}
+
 .btn-primary {
   margin-right: 5px;
 }
@@ -54,12 +58,25 @@ div.login.row {
 #img {
   text-align: center;
 }
-div.registration-view.col {
-  top: 50px;
+div.registration-view.row {
+  top: 35px;
   max-width: 900px;
   background-color: #ffffff;
-  padding: 20px;
+  padding: 40px;
   margin: 0 auto;
+}
+
+label.form-label {
+  width: 100%;
+}
+
+input.form-control {
+  width: 100%;
+}
+
+.back {
+  color: #000;
+  padding: 6px 12px;
 }
 .movie-info.card {
   margin-top: 50px;

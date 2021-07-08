@@ -4,10 +4,23 @@ $third-color: #000;
 $header-font: 'Oswald';
 $body-font: 'Montserrat';
 
-div.registration-view.col {
-  top: 50px;
+div.registration-view.row {
+  top: 35px;
   max-width: 900px;
   background-color: $secondary-color;
-  padding: 20px;
+  padding: 40px;
   margin: 0 auto;
+}
+
+label.form-label {
+  width: 100%;
+}
+
+input.form-control {
+  width: 100%;
+}
+
+.back {
+  color: $third-color;
+  padding: 6px 12px;
 }
