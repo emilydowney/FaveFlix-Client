@@ -22082,7 +22082,7 @@ class MainView extends _reactDefault.default.Component {
                 user: localStorage.getItem('user')
             });
             this.getMovies(accessToken);
-            this.getUsers(accessToken);
+            this.getUser(accessToken);
         }
     }
     getMovies(token) {
@@ -22098,14 +22098,14 @@ class MainView extends _reactDefault.default.Component {
             console.log(error);
         });
     }
-    getUsers(token) {
-        _axiosDefault.default.get('https://a-movies-api.herokuapp.com/users', {
+    getUser(token, user) {
+        _axiosDefault.default.get('https://a-movies-api.herokuapp.com/users/${user}', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }).then((response)=>{
             this.setState({
-                users: response.data
+                user: response.data
             });
         }).catch(function(error) {
             console.log(error);
@@ -22208,7 +22208,7 @@ class MainView extends _reactDefault.default.Component {
             __self: this
         }, "Movies"), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             className: "nav-link",
-            to: "/users/:username",
+            to: "/users/${user}",
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/main-view/main-view.jsx",
                 lineNumber: 105
@@ -22364,7 +22364,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
-            path: "/users/:userId",
+            path: "/users/${user}",
             render: ({ match , history  })=>{
                 if (!user) return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
                     onLoggedIn: (user1)=>this.onLoggedIn(user1)
@@ -40074,67 +40074,55 @@ function UserView(props) {
         e.preventDefault();
         console.log(username, password, email, birthday);
     };
-    _axiosDefault.default.put('https://a-movies-api.herokuapp.com/users/:', {
-        Username: username,
-        Password: password,
-        Email: email,
-        Birthday: birthday
-    }).then((response)=>{
-        const data = response.data;
-        console.log(data);
-        window.open('/', '_self');
-    }).catch((e)=>{
-        console.log('error registering the user');
-    });
     return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
         className: "container",
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 39
+            lineNumber: 24
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
-        className: "registration-view",
+        className: "user-view",
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 40
+            lineNumber: 25
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
         md: 6,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 41
+            lineNumber: 26
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement("h5", {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 42
+            lineNumber: 27
         },
         __self: this
-    }, "Sign Up"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
+    }, "Profile"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 43
+            lineNumber: 28
         },
         __self: this
     }, "Fill out the form below to create your account."), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 44
+            lineNumber: 29
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 45
+            lineNumber: 30
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 46
+            lineNumber: 31
         },
         __self: this
     }, "Username:", /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
@@ -40146,19 +40134,19 @@ function UserView(props) {
         required: true,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 48
+            lineNumber: 33
         },
         __self: this
     }))), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 51
+            lineNumber: 36
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 52
+            lineNumber: 37
         },
         __self: this
     }, "Password:", /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
@@ -40170,19 +40158,19 @@ function UserView(props) {
         required: true,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 54
+            lineNumber: 39
         },
         __self: this
     }))), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 57
+            lineNumber: 42
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 58
+            lineNumber: 43
         },
         __self: this
     }, "Email:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
@@ -40194,19 +40182,19 @@ function UserView(props) {
         required: true,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 61
+            lineNumber: 46
         },
         __self: this
     })), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 63
+            lineNumber: 48
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 64
+            lineNumber: 49
         },
         __self: this
     }, "Birthday:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
@@ -40216,13 +40204,13 @@ function UserView(props) {
         ,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 67
+            lineNumber: 52
         },
         __self: this
     })), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 69
+            lineNumber: 54
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -40230,20 +40218,20 @@ function UserView(props) {
         onClick: handleSubmit,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 70
+            lineNumber: 55
         },
         __self: this
     }, "Submit"), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
         to: "/",
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 72
+            lineNumber: 57
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 72
+            lineNumber: 57
         },
         __self: this
     }, "Back"))))), /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
@@ -40251,7 +40239,7 @@ function UserView(props) {
         md: 6,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 76
+            lineNumber: 61
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement("img", {
@@ -40259,7 +40247,7 @@ function UserView(props) {
         src: "https://cdn4.iconfinder.com/data/icons/online-marketing-hand-drawn-vol-1/52/cinema__movie__reel__video__videoreel__film__media-1024.png",
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 77
+            lineNumber: 62
         },
         __self: this
     })))));

@@ -20,26 +20,11 @@ export function UserView(props) {
     console.log(username, password, email, birthday);
   };
 
-  axios.put('https://a-movies-api.herokuapp.com/users/:', {
-    Username: username,
-    Password: password,
-    Email: email,
-    Birthday: birthday
-  })
-    .then(response => {
-      const data = response.data;
-      console.log(data);
-      window.open('/', '_self');
-    })
-    .catch(e => {
-      console.log('error registering the user')
-    });
-
   return (
     <div className="container">
-      <Row className="registration-view">
+      <Row className="user-view">
         <Col md={6}>
-          <h5>Sign Up</h5>
+          <h5>Profile</h5>
           <p>Fill out the form below to create your account.</p>
           <Form>
             <Form.Group>
