@@ -22,7 +22,6 @@ export class MainView extends React.Component {
     this.state = {
       movies: [],
       user: null,
-      users: []
     };
   }
 
@@ -33,6 +32,7 @@ export class MainView extends React.Component {
         user: localStorage.getItem('user')
       });
       this.getMovies(accessToken);
+      this.getUsers(accessToken);
     }
   }
 
@@ -51,13 +51,13 @@ export class MainView extends React.Component {
       });
   }
 
-  getUser(token) {
-    axios.get('https://a-movies-api.herokuapp.com/users/${user.username}', {
+  getUsers(token) {
+    axios.get('https://a-movies-api.herokuapp.com/users', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
         this.setState({
-          user: response.data
+          users: response.data
         });
       })
       .catch(function (error) {
@@ -102,7 +102,7 @@ export class MainView extends React.Component {
               <Nav className="mr-auto">
                 <Link className="nav-link" to="/">Home</Link>
                 <Link className="nav-link" to="/">Movies</Link>
-                <Link className="nav-link" to="/users/{username}">Profile</Link>
+                <Link className="nav-link" to="/users/:username">Profile</Link>
                 <Link to="/">
                   <Button variant="link" className="nav-link" onClick={() => this.onLoggedOut()}>Logout</Button>
                 </Link>
@@ -167,14 +167,14 @@ export class MainView extends React.Component {
             </Col>
           }} />
 
-          <Route path="/users/:username" render={({ match, history }) => {
+          <Route path="/users/:userId" render={({ match, history }) => {
             if (!user) return <Col>
               <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
             </Col>
             if (movies.length === 0) return <div className="main-view" />;
             return <Col md={8}>
               <UserView onLoggedIn={user => this.onLoggedIn(user)}
-                user={user} onBackClick={() => history.goBack()} />
+                user={user} movies={movies} onBackClick={() => history.goBack()} />
             </Col>
           }} />
         </Row>

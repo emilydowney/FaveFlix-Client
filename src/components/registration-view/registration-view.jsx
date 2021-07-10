@@ -13,27 +13,34 @@ export function RegistrationView(props) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
+  const [validated, setValidated] = useState(false);
 
 
-  const handleSubmit = () => {
+  const handleSubmit = e => {
     e.preventDefault();
-    console.log(username, password, email, birthday);
-  };
 
-  axios.post('https://a-movies-api.herokuapp.com/users', {
-    Username: username,
-    Password: password,
-    Email: email,
-    Birthday: birthday
-  })
-    .then(response => {
-      const data = response.data;
-      console.log(data);
-      window.open('/', '_self');
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
+    }
+
+    setValidated(true)
+
+    axios.post('https://a-movies-api.herokuapp.com/users', {
+      Username: username,
+      Password: password,
+      Email: email,
+      Birthday: birthday
     })
-    .catch(e => {
-      console.log('error registering the user')
-    });
+      .then(response => {
+        const data = response.data;
+        console.log(data);
+        window.open('/', '_self');
+      })
+      .catch(e => {
+        console.log('error registering the user')
+      })
+  }
 
   const onBackClick = this.props;
 
@@ -43,24 +50,36 @@ export function RegistrationView(props) {
         <Col md={6}>
           <h5>Sign Up</h5>
           <p>Fill out the form below to create your account.</p>
-          <Form>
+          <Form noValidate validated={validated}>
             <Form.Group>
               <Form.Label>
                 Username:
-                <Form.Control type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
+                <Form.Control type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} required />
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  Please create a username.
+                </Form.Control.Feedback>
               </Form.Label>
             </Form.Group>
             <Form.Group>
               <Form.Label>
                 Password:
-                <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+                <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  Please create a password.
+                </Form.Control.Feedback>
               </Form.Label>
             </Form.Group>
             <Form.Group>
               <Form.Label>
                 Email:
               </Form.Label>
-              <Form.Control type="text" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+              <Form.Control type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                Please input a valid email address.
+              </Form.Control.Feedback>
             </Form.Group>
             <Form.Group>
               <Form.Label>

@@ -22072,8 +22072,7 @@ class MainView extends _reactDefault.default.Component {
         // Sets initial states to null
         this.state = {
             movies: [],
-            user: null,
-            users: []
+            user: null
         };
     }
     componentDidMount() {
@@ -22083,6 +22082,7 @@ class MainView extends _reactDefault.default.Component {
                 user: localStorage.getItem('user')
             });
             this.getMovies(accessToken);
+            this.getUsers(accessToken);
         }
     }
     getMovies(token) {
@@ -22098,14 +22098,14 @@ class MainView extends _reactDefault.default.Component {
             console.log(error);
         });
     }
-    getUser(token) {
-        _axiosDefault.default.get('https://a-movies-api.herokuapp.com/users/${user.username}', {
+    getUsers(token) {
+        _axiosDefault.default.get('https://a-movies-api.herokuapp.com/users', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }).then((response)=>{
             this.setState({
-                user: response.data
+                users: response.data
             });
         }).catch(function(error) {
             console.log(error);
@@ -22208,7 +22208,7 @@ class MainView extends _reactDefault.default.Component {
             __self: this
         }, "Movies"), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             className: "nav-link",
-            to: "/users/{username}",
+            to: "/users/:username",
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/main-view/main-view.jsx",
                 lineNumber: 105
@@ -22364,7 +22364,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
-            path: "/users/:username",
+            path: "/users/:userId",
             render: ({ match , history  })=>{
                 if (!user) return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
                     onLoggedIn: (user1)=>this.onLoggedIn(user1)
@@ -22378,6 +22378,7 @@ class MainView extends _reactDefault.default.Component {
                     onLoggedIn: (user1)=>this.onLoggedIn(user1)
                     ,
                     user: user,
+                    movies: movies,
                     onBackClick: ()=>history.goBack()
                 })));
             },
@@ -38923,8 +38924,12 @@ function LoginView(props) {
     _s();
     const [username, setUsername] = _react.useState('');
     const [password, setPassword] = _react.useState('');
+    const [validated, setValidated] = _react.useState(false);
     const handleSubmit = (e)=>{
         e.preventDefault();
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) e.stopPropagation();
+        setValidated(true);
         _axiosDefault.default.post('https://a-movies-api.herokuapp.com/login', {
             Username: username,
             Password: password
@@ -38932,67 +38937,69 @@ function LoginView(props) {
             const data = response.data;
             props.onLoggedIn(data);
         }).catch((e1)=>{
-            console.log('No such user');
+            alert('Incorrect username or password.');
         });
     };
     return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
         className: "container",
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
-            lineNumber: 33
+            lineNumber: 41
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement("div", {
         className: "welcome",
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
-            lineNumber: 34
+            lineNumber: 42
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement("h1", {
         className: "title",
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
-            lineNumber: 35
+            lineNumber: 43
         },
         __self: this
     }, "Welcome to FaveFlix!"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
-            lineNumber: 36
+            lineNumber: 44
         },
         __self: this
     }, "Looking for your next favorite movie? You've come to the right place! FaveFlix is here to show you Hollywood's greatest films. Make an account or login to start your movie journey.")), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
         className: "login",
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
-            lineNumber: 38
+            lineNumber: 46
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
         md: 6,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
-            lineNumber: 39
+            lineNumber: 47
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default, {
+        noValidate: true,
+        validated: validated,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
-            lineNumber: 40
+            lineNumber: 48
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
         controlId: "formUsername",
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
-            lineNumber: 41
+            lineNumber: 49
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
-            lineNumber: 42
+            lineNumber: 50
         },
         __self: this
     }, "Username:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
@@ -39004,20 +39011,33 @@ function LoginView(props) {
         required: true,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
-            lineNumber: 43
+            lineNumber: 51
         },
         __self: this
-    })), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
+    }), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control.Feedback, {
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
+            lineNumber: 52
+        },
+        __self: this
+    }, "Looks good!"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control.Feedback, {
+        type: "invalid",
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
+            lineNumber: 53
+        },
+        __self: this
+    }, "Please input your username.")), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
         controlId: "formPassword",
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
-            lineNumber: 46
+            lineNumber: 58
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
-            lineNumber: 47
+            lineNumber: 59
         },
         __self: this
     }, "Password:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
@@ -39029,30 +39049,43 @@ function LoginView(props) {
         required: true,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
-            lineNumber: 48
+            lineNumber: 60
         },
         __self: this
-    })), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+    }), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control.Feedback, {
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
+            lineNumber: 61
+        },
+        __self: this
+    }, "Looks good!"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control.Feedback, {
+        type: "invalid",
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
+            lineNumber: 62
+        },
+        __self: this
+    }, "Please input your password.")), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
         variant: "primary",
         type: "submit",
         onClick: handleSubmit,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
-            lineNumber: 51
+            lineNumber: 67
         },
         __self: this
     }, "Login"), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
         to: `/register`,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
-            lineNumber: 54
+            lineNumber: 70
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
         variant: "secondary",
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
-            lineNumber: 55
+            lineNumber: 71
         },
         __self: this
     }, "Create Account")))), /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
@@ -39060,7 +39093,7 @@ function LoginView(props) {
         md: 6,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
-            lineNumber: 59
+            lineNumber: 75
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement("img", {
@@ -39068,12 +39101,12 @@ function LoginView(props) {
         src: "https://cdn4.iconfinder.com/data/icons/online-marketing-hand-drawn-vol-1/52/cinema__movie__reel__video__videoreel__film__media-1024.png",
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
-            lineNumber: 60
+            lineNumber: 76
         },
         __self: this
     })))));
 }
-_s(LoginView, "wuQOK7xaXdVz4RMrZQhWbI751Oc=");
+_s(LoginView, "SA/z51gtsh1VmRJTBtoE1mObG10=");
 _c = LoginView;
 var _c;
 $RefreshReg$(_c, "LoginView");
@@ -39267,72 +39300,77 @@ function RegistrationView(props) {
     const [password, setPassword] = _react.useState('');
     const [email, setEmail] = _react.useState('');
     const [birthday, setBirthday] = _react.useState('');
-    const handleSubmit = ()=>{
+    const [validated, setValidated] = _react.useState(false);
+    const handleSubmit = (e)=>{
         e.preventDefault();
-        console.log(username, password, email, birthday);
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) e.stopPropagation();
+        setValidated(true);
+        _axiosDefault.default.post('https://a-movies-api.herokuapp.com/users', {
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthday: birthday
+        }).then((response)=>{
+            const data = response.data;
+            console.log(data);
+            window.open('/', '_self');
+        }).catch((e1)=>{
+            console.log('error registering the user');
+        });
     };
-    _axiosDefault.default.post('https://a-movies-api.herokuapp.com/users', {
-        Username: username,
-        Password: password,
-        Email: email,
-        Birthday: birthday
-    }).then((response)=>{
-        const data = response.data;
-        console.log(data);
-        window.open('/', '_self');
-    }).catch((e)=>{
-        console.log('error registering the user');
-    });
     const onBackClick = this.props;
     return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
         className: "container",
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 41
+            lineNumber: 48
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
         className: "registration-view",
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 42
+            lineNumber: 49
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
         md: 6,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 43
+            lineNumber: 50
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement("h5", {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 44
+            lineNumber: 51
         },
         __self: this
     }, "Sign Up"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 45
+            lineNumber: 52
         },
         __self: this
     }, "Fill out the form below to create your account."), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default, {
+        noValidate: true,
+        validated: validated,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 46
+            lineNumber: 53
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 47
+            lineNumber: 54
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 48
+            lineNumber: 55
         },
         __self: this
     }, "Username:", /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
@@ -39341,21 +39379,35 @@ function RegistrationView(props) {
         value: username,
         onChange: (e)=>setUsername(e.target.value)
         ,
+        required: true,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 50
+            lineNumber: 57
         },
         __self: this
-    }))), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
+    }), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control.Feedback, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 53
+            lineNumber: 58
+        },
+        __self: this
+    }, "Looks good!"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control.Feedback, {
+        type: "invalid",
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 59
+        },
+        __self: this
+    }, "Please create a username."))), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 64
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 54
+            lineNumber: 65
         },
         __self: this
     }, "Password:", /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
@@ -39364,44 +39416,72 @@ function RegistrationView(props) {
         value: password,
         onChange: (e)=>setPassword(e.target.value)
         ,
+        required: true,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 56
+            lineNumber: 67
         },
         __self: this
-    }))), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
+    }), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control.Feedback, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 59
+            lineNumber: 68
+        },
+        __self: this
+    }, "Looks good!"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control.Feedback, {
+        type: "invalid",
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 69
+        },
+        __self: this
+    }, "Please create a password."))), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 74
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 60
+            lineNumber: 75
         },
         __self: this
     }, "Email:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
-        type: "text",
+        type: "email",
         placeholder: "Email",
         value: email,
         onChange: (e)=>setEmail(e.target.value)
         ,
+        required: true,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 63
+            lineNumber: 78
         },
         __self: this
-    })), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
+    }), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control.Feedback, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 65
+            lineNumber: 79
+        },
+        __self: this
+    }, "Looks good!"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control.Feedback, {
+        type: "invalid",
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 80
+        },
+        __self: this
+    }, "Please input a valid email address.")), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 84
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 66
+            lineNumber: 85
         },
         __self: this
     }, "Birthday:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
@@ -39411,13 +39491,13 @@ function RegistrationView(props) {
         ,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 69
+            lineNumber: 88
         },
         __self: this
     })), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 71
+            lineNumber: 90
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -39425,20 +39505,20 @@ function RegistrationView(props) {
         onClick: handleSubmit,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 72
+            lineNumber: 91
         },
         __self: this
     }, "Submit"), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
         to: "/",
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 74
+            lineNumber: 93
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 74
+            lineNumber: 93
         },
         __self: this
     }, "Back"))))), /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
@@ -39446,7 +39526,7 @@ function RegistrationView(props) {
         md: 6,
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 78
+            lineNumber: 97
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement("img", {
@@ -39454,12 +39534,12 @@ function RegistrationView(props) {
         src: "https://cdn4.iconfinder.com/data/icons/online-marketing-hand-drawn-vol-1/52/cinema__movie__reel__video__videoreel__film__media-1024.png",
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
-            lineNumber: 79
+            lineNumber: 98
         },
         __self: this
     })))));
 }
-_s(RegistrationView, "tdA1KK8yaZidqYo0wscqshHt/KE=");
+_s(RegistrationView, "DSoFqP5ilEr/TTrI8Fe/mbqpO6g=");
 _c = RegistrationView;
 var _c;
 $RefreshReg$(_c, "RegistrationView");
@@ -39469,7 +39549,7 @@ $RefreshReg$(_c, "RegistrationView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8","./registration-view.scss":"45ltL","axios":"7rA65","@parcel/transformer-js/src/esmodule-helpers.js":"5rc4N","../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"Do7ad","react-router-dom":"1PMSK"}],"45ltL":[function() {},{}],"108dx":[function(require,module,exports) {
+},{"react":"3b2NM","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8","react-router-dom":"1PMSK","./registration-view.scss":"45ltL","axios":"7rA65","@parcel/transformer-js/src/esmodule-helpers.js":"5rc4N","../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"Do7ad"}],"45ltL":[function() {},{}],"108dx":[function(require,module,exports) {
 var helpers = require("../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -39959,7 +40039,241 @@ class GenreView extends _reactDefault.default.Component {
   window.$RefreshSig$ = prevRefreshSig;
 }
 },{"react":"3b2NM","react-bootstrap/Button":"1ru0l","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8","./genre-view.scss":"7GLf4","@parcel/transformer-js/src/esmodule-helpers.js":"5rc4N","../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"Do7ad"}],"7GLf4":[function() {},{}],"9B3Kh":[function(require,module,exports) {
+var helpers = require("../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
 
-},{}],"5chAY":[function() {},{}],"3IMRc":[function() {},{}]},["1j6wU","7iJiK","5lMFC"], "5lMFC", "parcelRequiref8b7")
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "UserView", ()=>UserView
+);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _form = require("react-bootstrap/Form");
+var _formDefault = parcelHelpers.interopDefault(_form);
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
+var _row = require("react-bootstrap/Row");
+var _rowDefault = parcelHelpers.interopDefault(_row);
+var _col = require("react-bootstrap/Col");
+var _colDefault = parcelHelpers.interopDefault(_col);
+var _reactRouterDom = require("react-router-dom");
+var _userViewScss = require("./user-view.scss");
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _s = $RefreshSig$();
+function UserView(props) {
+    _s();
+    const [username, setUsername] = _react.useState('');
+    const [password, setPassword] = _react.useState('');
+    const [email, setEmail] = _react.useState('');
+    const [birthday, setBirthday] = _react.useState('');
+    const handleSubmit = ()=>{
+        e.preventDefault();
+        console.log(username, password, email, birthday);
+    };
+    _axiosDefault.default.put('https://a-movies-api.herokuapp.com/users/:', {
+        Username: username,
+        Password: password,
+        Email: email,
+        Birthday: birthday
+    }).then((response)=>{
+        const data = response.data;
+        console.log(data);
+        window.open('/', '_self');
+    }).catch((e)=>{
+        console.log('error registering the user');
+    });
+    return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
+        className: "container",
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 39
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
+        className: "registration-view",
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 40
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+        md: 6,
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 41
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement("h5", {
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 42
+        },
+        __self: this
+    }, "Sign Up"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 43
+        },
+        __self: this
+    }, "Fill out the form below to create your account."), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default, {
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 44
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 45
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 46
+        },
+        __self: this
+    }, "Username:", /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
+        type: "text",
+        placeholder: "Username",
+        value: username,
+        onChange: (e)=>setUsername(e.target.value)
+        ,
+        required: true,
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 48
+        },
+        __self: this
+    }))), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 51
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 52
+        },
+        __self: this
+    }, "Password:", /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
+        type: "password",
+        placeholder: "Password",
+        value: password,
+        onChange: (e)=>setPassword(e.target.value)
+        ,
+        required: true,
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 54
+        },
+        __self: this
+    }))), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 57
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 58
+        },
+        __self: this
+    }, "Email:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
+        type: "email",
+        placeholder: "Email",
+        value: email,
+        onChange: (e)=>setEmail(e.target.value)
+        ,
+        required: true,
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 61
+        },
+        __self: this
+    })), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 63
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 64
+        },
+        __self: this
+    }, "Birthday:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
+        type: "date",
+        value: birthday,
+        onChange: (e)=>setBirthday(e.target.value)
+        ,
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 67
+        },
+        __self: this
+    })), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 69
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+        type: "submit",
+        onClick: handleSubmit,
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 70
+        },
+        __self: this
+    }, "Submit"), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
+        to: "/",
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 72
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 72
+        },
+        __self: this
+    }, "Back"))))), /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+        id: "img",
+        md: 6,
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 76
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement("img", {
+        className: "main-logo",
+        src: "https://cdn4.iconfinder.com/data/icons/online-marketing-hand-drawn-vol-1/52/cinema__movie__reel__video__videoreel__film__media-1024.png",
+        __source: {
+            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+            lineNumber: 77
+        },
+        __self: this
+    })))));
+}
+_s(UserView, "tdA1KK8yaZidqYo0wscqshHt/KE=");
+_c = UserView;
+var _c;
+$RefreshReg$(_c, "UserView");
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"3b2NM","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8","react-router-dom":"1PMSK","./user-view.scss":"3hdiq","axios":"7rA65","@parcel/transformer-js/src/esmodule-helpers.js":"5rc4N","../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"Do7ad"}],"3hdiq":[function() {},{}],"5chAY":[function() {},{}],"3IMRc":[function() {},{}]},["1j6wU","7iJiK","5lMFC"], "5lMFC", "parcelRequiref8b7")
 
 //# sourceMappingURL=index.d5e4bee3.js.map

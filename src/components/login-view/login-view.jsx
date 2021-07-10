@@ -12,9 +12,17 @@ import './login-view.scss'
 export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [validated, setValidated] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
+
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
+    }
+
+    setValidated(true)
 
     axios.post('https://a-movies-api.herokuapp.com/login', {
       Username: username,
@@ -25,7 +33,7 @@ export function LoginView(props) {
         props.onLoggedIn(data);
       })
       .catch(e => {
-        console.log('No such user')
+        alert('Incorrect username or password.')
       });
   };
 
@@ -37,15 +45,23 @@ export function LoginView(props) {
       </div>
       <Row className="login">
         <Col md={6}>
-          <Form>
+          <Form noValidate validated={validated}>
             <Form.Group controlId="formUsername">
               <Form.Label>Username:</Form.Label>
               <Form.Control type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} required />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                Please input your username.
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="formPassword">
               <Form.Label>Password:</Form.Label>
               <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                Please input your password.
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Button variant="primary" type="submit" onClick={handleSubmit}>Login
