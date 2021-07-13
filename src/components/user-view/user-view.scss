@@ -1,0 +1,15 @@
+$primary-color: #1188a3;
+$secondary-color: #ffffff;
+$third-color: #000;
+$header-font: 'Oswald';
+$body-font: 'Montserrat';
+
+div.user-view.row {
+  top: 35px;
+  max-width: 900px;
+  background-color: $secondary-color;
+  padding: 40px;
+  margin: 0 auto;
+}
+
+

@@ -152,7 +152,13 @@ button.btn.btn-primary {
   margin-top: 10px;
   border-color: #1188a3;
 }
-
+div.user-view.row {
+  top: 35px;
+  max-width: 900px;
+  background-color: #ffffff;
+  padding: 40px;
+  margin: 0 auto;
+}
 
 .navbar.navbar-expand-lg.navbar-light.bg-light {
   position: fixed;

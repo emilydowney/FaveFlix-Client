@@ -1,67 +1,44 @@
-import React, { useState } from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import React from 'react';
+import { Form, Button, Row, Col } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import './user-view.scss';
 import axios from 'axios';
 
-export function UserView(props) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [birthday, setBirthday] = useState('');
+export class UserView extends React.Component {
 
+  render() {
+    const { user, userData } = this.props;
 
-  const handleSubmit = () => {
-    e.preventDefault();
-    console.log(username, password, email, birthday);
-  };
+    // Function to delete user profile
+    function deleteUser() {
+      let token = localStorage.getItem('token');
 
-  return (
-    <div className="container">
-      <Row className="user-view">
-        <Col md={6}>
-          <h5>Profile</h5>
-          <p>Fill out the form below to create your account.</p>
-          <Form>
-            <Form.Group>
-              <Form.Label>
-                Username:
-                <Form.Control type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} required />
-              </Form.Label>
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>
-                Password:
-                <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
-              </Form.Label>
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>
-                Email:
-              </Form.Label>
-              <Form.Control type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>
-                Birthday:
-              </Form.Label>
-              <Form.Control type="date" value={birthday} onChange={e => setBirthday(e.target.value)} />
-            </Form.Group>
-            <Form.Group>
-              <Button type="submit" onClick={handleSubmit}>Submit
-              </Button>
-              <Link to="/"><Button>Back</Button></Link>
-            </Form.Group>
-          </Form>
-        </Col>
-        <Col id="img" md={6}>
-          <img className="main-logo" src="https://cdn4.iconfinder.com/data/icons/online-marketing-hand-drawn-vol-1/52/cinema__movie__reel__video__videoreel__film__media-1024.png" />
-        </Col>
-      </Row>
-    </div>
-  );
+      axios.delete('https://a-movies-api.herokuapp.com/users/${user}', { headers: { Authorization: `Bearer ${token}` } })
+
+        .then(response => {
+          alert('Account was deleted.')
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+
+    return (
+      <div className="container">
+        <Row className="user-view">
+          <Col md={11}>
+            <h5>My Profile</h5>
+            <p>Username: {user}<br />
+              Email: {`${userData.Email}`}
+            </p>
+
+            <Button variant="danger" onClick={() => { deleteUser() }}> Delete Account</Button>
+          </Col>
+        </Row>
+      </div>
+    )
+  }
 }
+

@@ -21,7 +21,7 @@ export class MainView extends React.Component {
     // Sets initial states to null
     this.state = {
       movies: [],
-      user: null,
+      user: null
     };
   }
 
@@ -35,7 +35,6 @@ export class MainView extends React.Component {
       this.getUser(accessToken);
     }
   }
-
 
   getMovies(token) {
     axios.get('https://a-movies-api.herokuapp.com/movies', {
@@ -51,13 +50,13 @@ export class MainView extends React.Component {
       });
   }
 
-  getUser(token, user) {
+  getUser(token) {
     axios.get('https://a-movies-api.herokuapp.com/users/${user}', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
         this.setState({
-          user: response.data
+          userData: response.data
         });
       })
       .catch(function (error) {
@@ -69,7 +68,8 @@ export class MainView extends React.Component {
   onLoggedIn(authData) {
     console.log(authData);
     this.setState({
-      user: authData.user.Username
+      user: authData.user.Username,
+      token: authData.token
     });
 
     localStorage.setItem('token', authData.token);
@@ -86,7 +86,7 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, user } = this.state;
+    const { movies, user, userData } = this.state;
 
     return (
       <Router>

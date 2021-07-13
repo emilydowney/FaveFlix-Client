@@ -22098,14 +22098,14 @@ class MainView extends _reactDefault.default.Component {
             console.log(error);
         });
     }
-    getUser(token, user) {
+    getUser(token) {
         _axiosDefault.default.get('https://a-movies-api.herokuapp.com/users/${user}', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }).then((response)=>{
             this.setState({
-                user: response.data
+                userData: response.data
             });
         }).catch(function(error) {
             console.log(error);
@@ -22115,7 +22115,8 @@ class MainView extends _reactDefault.default.Component {
     onLoggedIn(authData) {
         console.log(authData);
         this.setState({
-            user: authData.user.Username
+            user: authData.user.Username,
+            token: authData.token
         });
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
@@ -22129,7 +22130,7 @@ class MainView extends _reactDefault.default.Component {
         });
     }
     render() {
-        const { movies , user  } = this.state;
+        const { movies , user , userData  } = this.state;
         return(/*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/main-view/main-view.jsx",
@@ -40051,217 +40052,87 @@ parcelHelpers.export(exports, "UserView", ()=>UserView
 );
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _form = require("react-bootstrap/Form");
-var _formDefault = parcelHelpers.interopDefault(_form);
-var _button = require("react-bootstrap/Button");
-var _buttonDefault = parcelHelpers.interopDefault(_button);
-var _row = require("react-bootstrap/Row");
-var _rowDefault = parcelHelpers.interopDefault(_row);
-var _col = require("react-bootstrap/Col");
-var _colDefault = parcelHelpers.interopDefault(_col);
+var _reactBootstrap = require("react-bootstrap");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactRouterDom = require("react-router-dom");
 var _userViewScss = require("./user-view.scss");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
-var _s = $RefreshSig$();
-function UserView(props) {
-    _s();
-    const [username, setUsername] = _react.useState('');
-    const [password, setPassword] = _react.useState('');
-    const [email, setEmail] = _react.useState('');
-    const [birthday, setBirthday] = _react.useState('');
-    const handleSubmit = ()=>{
-        e.preventDefault();
-        console.log(username, password, email, birthday);
-    };
-    return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
-        className: "container",
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 24
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
-        className: "user-view",
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 25
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
-        md: 6,
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 26
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement("h5", {
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 27
-        },
-        __self: this
-    }, "Profile"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 28
-        },
-        __self: this
-    }, "Fill out the form below to create your account."), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default, {
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 29
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 30
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 31
-        },
-        __self: this
-    }, "Username:", /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
-        type: "text",
-        placeholder: "Username",
-        value: username,
-        onChange: (e)=>setUsername(e.target.value)
-        ,
-        required: true,
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 33
-        },
-        __self: this
-    }))), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 36
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 37
-        },
-        __self: this
-    }, "Password:", /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
-        type: "password",
-        placeholder: "Password",
-        value: password,
-        onChange: (e)=>setPassword(e.target.value)
-        ,
-        required: true,
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 39
-        },
-        __self: this
-    }))), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 42
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 43
-        },
-        __self: this
-    }, "Email:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
-        type: "email",
-        placeholder: "Email",
-        value: email,
-        onChange: (e)=>setEmail(e.target.value)
-        ,
-        required: true,
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 46
-        },
-        __self: this
-    })), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 48
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 49
-        },
-        __self: this
-    }, "Birthday:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
-        type: "date",
-        value: birthday,
-        onChange: (e)=>setBirthday(e.target.value)
-        ,
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 52
-        },
-        __self: this
-    })), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 54
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
-        type: "submit",
-        onClick: handleSubmit,
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 55
-        },
-        __self: this
-    }, "Submit"), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
-        to: "/",
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 57
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 57
-        },
-        __self: this
-    }, "Back"))))), /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
-        id: "img",
-        md: 6,
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 61
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement("img", {
-        className: "main-logo",
-        src: "https://cdn4.iconfinder.com/data/icons/online-marketing-hand-drawn-vol-1/52/cinema__movie__reel__video__videoreel__film__media-1024.png",
-        __source: {
-            fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-            lineNumber: 62
-        },
-        __self: this
-    })))));
+class UserView extends _reactDefault.default.Component {
+    render() {
+        const { user , userData  } = this.props;
+        // Function to delete user profile
+        function deleteUser() {
+            let token = localStorage.getItem('token');
+            _axiosDefault.default.delete('https://a-movies-api.herokuapp.com/users/${user}', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then((response)=>{
+                alert('Account was deleted.');
+            }).catch(function(error) {
+                console.log(error);
+            });
+        }
+        return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
+            className: "container",
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+                lineNumber: 29
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
+            className: "user-view",
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+                lineNumber: 30
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
+            md: 11,
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+                lineNumber: 31
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement("h5", {
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+                lineNumber: 32
+            },
+            __self: this
+        }, "My Profile"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+                lineNumber: 33
+            },
+            __self: this
+        }, "Username: ", user, /*#__PURE__*/ _reactDefault.default.createElement("br", {
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+                lineNumber: 33
+            },
+            __self: this
+        }), "Email: ", `${userData.Email}`), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
+            variant: "danger",
+            onClick: ()=>{
+                deleteUser();
+            },
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+                lineNumber: 37
+            },
+            __self: this
+        }, " Delete Account")))));
+    }
 }
-_s(UserView, "tdA1KK8yaZidqYo0wscqshHt/KE=");
-_c = UserView;
-var _c;
-$RefreshReg$(_c, "UserView");
 
   helpers.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8","react-router-dom":"1PMSK","./user-view.scss":"3hdiq","axios":"7rA65","@parcel/transformer-js/src/esmodule-helpers.js":"5rc4N","../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"Do7ad"}],"3hdiq":[function() {},{}],"5chAY":[function() {},{}],"3IMRc":[function() {},{}]},["1j6wU","7iJiK","5lMFC"], "5lMFC", "parcelRequiref8b7")
+},{"react":"3b2NM","react-bootstrap":"4n7hB","prop-types":"4dfy5","react-router-dom":"1PMSK","./user-view.scss":"3hdiq","axios":"7rA65","@parcel/transformer-js/src/esmodule-helpers.js":"5rc4N","../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"Do7ad"}],"3hdiq":[function() {},{}],"5chAY":[function() {},{}],"3IMRc":[function() {},{}]},["1j6wU","7iJiK","5lMFC"], "5lMFC", "parcelRequiref8b7")
 
 //# sourceMappingURL=index.d5e4bee3.js.map
