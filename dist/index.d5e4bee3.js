@@ -39666,29 +39666,46 @@ parcelHelpers.export(exports, "MovieView", ()=>MovieView
 );
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _button = require("react-bootstrap/Button");
-var _buttonDefault = parcelHelpers.interopDefault(_button);
-var _row = require("react-bootstrap/Row");
-var _rowDefault = parcelHelpers.interopDefault(_row);
-var _col = require("react-bootstrap/Col");
-var _colDefault = parcelHelpers.interopDefault(_col);
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 var _movieViewScss = require("./movie-view.scss");
 class MovieView extends _reactDefault.default.Component {
+    constructor(){
+        super();
+        this.state = {
+        };
+    }
+    addFavorite(movie) {
+        const token = localStorage.getItem('token');
+        const url = 'https://a-movies-api.herokuapp.com/users/' + localStorage.getItem('user') + '/favorites/' + movie._id;
+        _axiosDefault.default.post(url, '', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            alert(movie.Title + ' was added to your favorites!');
+        }).catch(function(error) {
+            console.log(error);
+        });
+    }
     render() {
         const { movie , onBackClick  } = this.props;
-        return(/*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
+        return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
             className: "movie-view",
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 15
+                lineNumber: 36
             },
             __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
             md: 6,
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 16
+                lineNumber: 37
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("img", {
@@ -39696,137 +39713,146 @@ class MovieView extends _reactDefault.default.Component {
             src: movie.ImageURL,
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 17
+                lineNumber: 38
             },
             __self: this
-        })), /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+        })), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
             md: 6,
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 19
+                lineNumber: 40
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("h5", {
             className: "movie-title",
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 20
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
-            className: "value",
-            __source: {
-                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 21
-            },
-            __self: this
-        }, movie.Title)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
-            className: "movie-year",
-            __source: {
-                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 23
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
-            className: "label",
-            __source: {
-                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 24
-            },
-            __self: this
-        }, "Release: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
-            className: "value",
-            __source: {
-                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 25
-            },
-            __self: this
-        }, movie.Release)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
-            className: "movie-director",
-            __source: {
-                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 27
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
-            className: "label",
-            __source: {
-                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 28
-            },
-            __self: this
-        }, "Director:"), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
-            to: `/directors/${movie.Director.Name}`,
-            __source: {
-                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 29
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
-            className: "value",
-            variant: "link",
-            __source: {
-                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 30
-            },
-            __self: this
-        }, movie.Director.Name))), /*#__PURE__*/ _reactDefault.default.createElement("div", {
-            className: "movie-genre",
-            __source: {
-                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 34
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
-            className: "label",
-            __source: {
-                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 35
-            },
-            __self: this
-        }, "Genre: "), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
-            to: `/genres/${movie.Genre.Name}`,
-            __source: {
-                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 36
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
-            className: "value",
-            variant: "link",
-            __source: {
-                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 37
-            },
-            __self: this
-        }, movie.Genre.Name))), /*#__PURE__*/ _reactDefault.default.createElement("div", {
-            className: "movie-description",
-            __source: {
-                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 40
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
-            className: "label",
-            __source: {
-                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
                 lineNumber: 41
             },
             __self: this
-        }, "Description: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
+        }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "value",
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
                 lineNumber: 42
             },
             __self: this
-        }, movie.Description)), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+        }, movie.Title)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+            className: "movie-year",
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
+                lineNumber: 44
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
+            className: "label",
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
+                lineNumber: 45
+            },
+            __self: this
+        }, "Release: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
+            className: "value",
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
+                lineNumber: 46
+            },
+            __self: this
+        }, movie.Release)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+            className: "movie-director",
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
+                lineNumber: 48
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
+            className: "label",
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
+                lineNumber: 49
+            },
+            __self: this
+        }, "Director:"), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
+            to: `/directors/${movie.Director.Name}`,
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
+                lineNumber: 50
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
+            className: "value",
+            variant: "link",
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
+                lineNumber: 51
+            },
+            __self: this
+        }, movie.Director.Name))), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+            className: "movie-genre",
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
+                lineNumber: 55
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
+            className: "label",
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
+                lineNumber: 56
+            },
+            __self: this
+        }, "Genre: "), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
+            to: `/genres/${movie.Genre.Name}`,
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
+                lineNumber: 57
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
+            className: "value",
+            variant: "link",
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
+                lineNumber: 58
+            },
+            __self: this
+        }, movie.Genre.Name))), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+            className: "movie-description",
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
+                lineNumber: 61
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
+            className: "label",
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
+                lineNumber: 62
+            },
+            __self: this
+        }, "Description: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
+            className: "value",
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
+                lineNumber: 63
+            },
+            __self: this
+        }, movie.Description)), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
+            onClick: ()=>{
+                this.addFavorite(movie);
+            },
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
+                lineNumber: 65
+            },
+            __self: this
+        }, "Add Favorite"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
             onClick: ()=>{
                 onBackClick();
             },
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 44
+                lineNumber: 66
             },
             __self: this
         }, "Back"))));
@@ -39838,7 +39864,7 @@ class MovieView extends _reactDefault.default.Component {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","react-bootstrap/Button":"1ru0l","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8","react-router-dom":"1PMSK","./movie-view.scss":"1OUwU","@parcel/transformer-js/src/esmodule-helpers.js":"5rc4N","../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"Do7ad"}],"1OUwU":[function() {},{}],"3amn7":[function(require,module,exports) {
+},{"react":"3b2NM","react-router-dom":"1PMSK","./movie-view.scss":"1OUwU","@parcel/transformer-js/src/esmodule-helpers.js":"5rc4N","../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"Do7ad","axios":"7rA65","prop-types":"4dfy5","react-bootstrap":"4n7hB"}],"1OUwU":[function() {},{}],"3amn7":[function(require,module,exports) {
 var helpers = require("../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -40156,14 +40182,26 @@ class UserView extends _reactDefault.default.Component {
                 lineNumber: 71
             },
             __self: this
-        }), "Birthday: ", this.state.birthday), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
+        }), "Birthday: ", this.state.birthday, /*#__PURE__*/ _reactDefault.default.createElement("br", {
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+                lineNumber: 72
+            },
+            __self: this
+        }), "Favorites: ", /*#__PURE__*/ _reactDefault.default.createElement("br", {
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+                lineNumber: 73
+            },
+            __self: this
+        }), this.state.favoriteMovies), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
             variant: "danger",
             onClick: ()=>{
                 this.deleteUser();
             },
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 75
+                lineNumber: 77
             },
             __self: this
         }, " Delete Account")))));

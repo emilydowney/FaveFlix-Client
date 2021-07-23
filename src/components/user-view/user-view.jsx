@@ -69,7 +69,9 @@ export class UserView extends React.Component {
             <h5>My Profile</h5>
             <p>Username: {this.state.username}<br />
               Email: {this.state.email}<br />
-              Birthday: {this.state.birthday}
+              Birthday: {this.state.birthday}<br />
+              Favorites: <br />
+              {this.state.favoriteMovies}
             </p>
 
             <Button variant="danger" onClick={() => { this.deleteUser() }}> Delete Account</Button>
