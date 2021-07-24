@@ -2,6 +2,7 @@ import React from 'react';
 import Moment from 'moment';
 import { Form, Button, Row, Col, Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import './user-view.scss';
@@ -17,6 +18,7 @@ export class UserView extends React.Component {
       email: null,
       birthday: null,
       favoriteMovies: [],
+      refresh: false,
     };
   }
 
@@ -41,7 +43,6 @@ export class UserView extends React.Component {
         });
       });
   }
-
   // Function to delete user profile
   deleteUser() {
     let url = 'https://a-movies-api.herokuapp.com/users/' + localStorage.getItem('user');
@@ -54,6 +55,23 @@ export class UserView extends React.Component {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         window.location.reload(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  removeFavorite(movie) {
+    const token = localStorage.getItem('token');
+    const url = 'https://a-movies-api.herokuapp.com/users/' + localStorage.getItem('user') + '/favorites/' + movie._id;
+    let profile = 'https://a-movies-api.herokuapp.com/users/' + localStorage.getItem('user');
+
+    axios.delete(url, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then((response) => {
+        this.componentDidMount();
+        alert(movie.Title + ' was removed from your favorites!');
       })
       .catch(function (error) {
         console.log(error);
@@ -91,7 +109,7 @@ export class UserView extends React.Component {
                     <Link to={`/movies/${movie._id}`}>
                       <Button variant="primary">Open</Button>
                     </Link>
-                    <Button variant="secondary">Remove</Button>
+                    <Button variant="secondary" onClick={() => { this.removeFavorite(movie); }}>Remove</Button>
                   </Card.Body>
                 </Card>
               </Col>
@@ -100,7 +118,7 @@ export class UserView extends React.Component {
         </Row>
         <Row className="user-view">
           <Col md={11}>
-            <Button variant="danger" onClick={() => { this.deleteUser() }}> Delete Account</Button>
+            <Button variant="danger" onClick={() => { this.deleteUser(); }}> Delete Account</Button>
           </Col>
         </Row>
       </div>

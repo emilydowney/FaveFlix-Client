@@ -14,6 +14,10 @@ export class MovieView extends React.Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    this.setState({})
+  }
+
   addFavorite(movie) {
     const token = localStorage.getItem('token');
     const url = 'https://a-movies-api.herokuapp.com/users/' + localStorage.getItem('user') + '/favorites/' + movie._id;
@@ -22,6 +26,7 @@ export class MovieView extends React.Component {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => {
+        this.componentDidMount();
         alert(movie.Title + ' was added to your favorites!')
       })
       .catch(function (error) {
