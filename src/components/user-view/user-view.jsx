@@ -17,8 +17,7 @@ export class UserView extends React.Component {
       password: null,
       email: null,
       birthday: null,
-      favoriteMovies: [],
-      refresh: false,
+      favoriteMovies: []
     };
   }
 
@@ -26,7 +25,7 @@ export class UserView extends React.Component {
     let accessToken = localStorage.getItem('token');
     this.getUser(accessToken);
   }
-
+  // Retrieves and sets user data
   getUser(token) {
     let url = 'https://a-movies-api.herokuapp.com/users/' + localStorage.getItem('user');
     axios.get(url, {
@@ -60,11 +59,10 @@ export class UserView extends React.Component {
         console.log(error);
       });
   }
-
+  // Function to remove movie from user's favorite list
   removeFavorite(movie) {
     const token = localStorage.getItem('token');
     const url = 'https://a-movies-api.herokuapp.com/users/' + localStorage.getItem('user') + '/favorites/' + movie._id;
-    let profile = 'https://a-movies-api.herokuapp.com/users/' + localStorage.getItem('user');
 
     axios.delete(url, {
       headers: { Authorization: `Bearer ${token}` }
@@ -72,6 +70,20 @@ export class UserView extends React.Component {
       .then((response) => {
         this.componentDidMount();
         alert(movie.Title + ' was removed from your favorites!');
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  updateUser() {
+    let url = 'https://a-movies-api.herokuapp.com/users/' + localStorage.getItem('user');
+
+    axios.put(url, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then((response) => {
+
       })
       .catch(function (error) {
         console.log(error);
