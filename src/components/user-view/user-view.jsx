@@ -1,6 +1,6 @@
 import React from 'react';
 import Moment from 'moment';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button, Row, Col, Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -61,6 +61,10 @@ export class UserView extends React.Component {
   }
 
   render() {
+    const { movies } = this.props;
+    const movieList = movies.filter((movie) => {
+      return this.state.favoriteMovies.includes(movie._id);
+    });
 
     return (
       <div className="container">
@@ -71,9 +75,31 @@ export class UserView extends React.Component {
               Email: {this.state.email}<br />
               Birthday: {this.state.birthday}<br />
               Favorites: <br />
-              {this.state.favoriteMovies}
             </p>
-
+          </Col>
+        </Row>
+        <Row className="user-view favorites">
+          {movieList.map((movie) => {
+            return (
+              <Col md={4}>
+                <Card className="movie-info">
+                  <div className="image">
+                    <Card.Img variant="top" src={movie.ImageURL} />
+                  </div>
+                  <Card.Body>
+                    <Card.Title>{movie.Title}</Card.Title>
+                    <Link to={`/movies/${movie._id}`}>
+                      <Button variant="primary">Open</Button>
+                    </Link>
+                    <Button variant="secondary">Remove</Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+            )
+          })}
+        </Row>
+        <Row className="user-view">
+          <Col md={11}>
             <Button variant="danger" onClick={() => { this.deleteUser() }}> Delete Account</Button>
           </Col>
         </Row>

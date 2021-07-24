@@ -156,8 +156,18 @@ div.user-view.row {
   top: 35px;
   max-width: 900px;
   background-color: #ffffff;
-  padding: 40px;
+  padding-top: 40px;
+  padding-right: 40px;
+  padding-left: 40px;
   margin: 0 auto;
+}
+
+div.user-view.favorites.row {
+  padding-top: 0px;
+}
+
+div.movie-info.card {
+  margin-top: 0px;
 }
 
 .navbar.navbar-expand-lg.navbar-light.bg-light {
