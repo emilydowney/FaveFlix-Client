@@ -1,12 +1,11 @@
 import React from 'react';
+import axios from 'axios';
 import Moment from 'moment';
 import { Form, Button, Row, Col, Card } from 'react-bootstrap';
-import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
+import { BrowserRouter as Link } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import './user-view.scss';
-import axios from 'axios';
 
 export class UserView extends React.Component {
 
@@ -75,7 +74,7 @@ export class UserView extends React.Component {
         console.log(error);
       });
   }
-
+  // Function to update user's info
   updateUser() {
     let url = 'https://a-movies-api.herokuapp.com/users/' + localStorage.getItem('user');
 
@@ -98,6 +97,7 @@ export class UserView extends React.Component {
 
     return (
       <div className="container">
+
         <Row className="user-view">
           <Col md={11}>
             <h5>My Profile</h5>
@@ -108,11 +108,12 @@ export class UserView extends React.Component {
             </p>
           </Col>
         </Row>
+
         <Row className="user-view favorites">
           {movieList.map((movie) => {
             return (
               <Col md={4}>
-                <Card className="movie-info">
+                <Card className="movie-info favorites">
                   <div className="image">
                     <Card.Img variant="top" src={movie.ImageURL} />
                   </div>
@@ -128,6 +129,7 @@ export class UserView extends React.Component {
             )
           })}
         </Row>
+
         <Row className="user-view">
           <Col md={11}>
             <Button variant="danger" onClick={() => { this.deleteUser(); }}> Delete Account</Button>

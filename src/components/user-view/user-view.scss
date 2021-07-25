@@ -12,9 +12,14 @@ div.user-view.row {
   padding-top: 40px;
   padding-right: 40px;
   padding-left: 40px;
+  padding-bottom: 0px;
   margin: 0 auto;
 }
 
 div.user-view.favorites.row {
   padding-top: 0px;
-} 
+}
+
+div.movie-info.favorites.card {
+  margin-top: 0px;
+}

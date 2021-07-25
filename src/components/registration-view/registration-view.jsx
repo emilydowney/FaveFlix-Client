@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import axios from 'axios';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import './registration-view.scss';
-import axios from 'axios';
 
 export function RegistrationView(props) {
   const [username, setUsername] = useState('');
@@ -23,9 +20,9 @@ export function RegistrationView(props) {
     if (form.checkValidity() === false) {
       e.stopPropagation();
     }
-
     setValidated(true)
 
+    // Post request to create a new user
     axios.post('https://a-movies-api.herokuapp.com/users', {
       Username: username,
       Password: password,
@@ -42,8 +39,6 @@ export function RegistrationView(props) {
       })
   }
 
-  const onBackClick = this.props;
-
   return (
     <div className="container">
       <Row className="registration-view">
@@ -51,49 +46,76 @@ export function RegistrationView(props) {
           <h5>Sign Up</h5>
           <p>Fill out the form below to create your account.</p>
           <Form noValidate validated={validated}>
+
             <Form.Group>
               <Form.Label>
                 Username:
-                <Form.Control type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} required />
+                <Form.Control
+                  type="text"
+                  placeholder="Username"
+                  value={username}
+                  onChange={e => setUsername(e.target.value)}
+                  required />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 <Form.Control.Feedback type="invalid">
                   Please create a username.
                 </Form.Control.Feedback>
               </Form.Label>
             </Form.Group>
+
             <Form.Group>
               <Form.Label>
                 Password:
-                <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  required />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 <Form.Control.Feedback type="invalid">
                   Please create a password.
                 </Form.Control.Feedback>
               </Form.Label>
             </Form.Group>
+
             <Form.Group>
               <Form.Label>
                 Email:
               </Form.Label>
-              <Form.Control type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
+              <Form.Control
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                required />
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">
                 Please input a valid email address.
               </Form.Control.Feedback>
             </Form.Group>
+
             <Form.Group>
               <Form.Label>
                 Birthday:
               </Form.Label>
-              <Form.Control type="date" value={birthday} onChange={e => setBirthday(e.target.value)} />
+              <Form.Control
+                type="date" value={birthday}
+                onChange={e => setBirthday(e.target.value)} />
             </Form.Group>
+
             <Form.Group>
-              <Button type="submit" onClick={handleSubmit}>Submit
+              <Button
+                type="submit"
+                onClick={handleSubmit}>Submit
               </Button>
-              <Link to="/"><Button>Back</Button></Link>
+              <Link to="/">
+                <Button>Back</Button>
+              </Link>
             </Form.Group>
           </Form>
         </Col>
+
         <Col id="img" md={6}>
           <img className="main-logo" src="https://cdn4.iconfinder.com/data/icons/online-marketing-hand-drawn-vol-1/52/cinema__movie__reel__video__videoreel__film__media-1024.png" />
         </Col>

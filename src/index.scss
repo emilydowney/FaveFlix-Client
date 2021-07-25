@@ -1,5 +1,6 @@
 $primary-color: #1188a3;
 $secondary-color: #0f7b8e;
+$white: #fff;
 $secondary-button: #353535;
 
 .navbar.navbar-expand-lg.navbar-light.bg-light {
@@ -24,8 +25,8 @@ button.btn.btn-outline-primary {
 }
 
 button.btn.btn-outline-primary:hover {
-  color: $secondary-color;
-  border-color: $secondary-color;
+  color: $white;
+  border-color: $white;
   background-color: $primary-color;
   transition: 0.2s ease-in;
 } 
