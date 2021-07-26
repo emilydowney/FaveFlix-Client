@@ -110,7 +110,7 @@ export function RegistrationView(props) {
                 onClick={handleSubmit}>Submit
               </Button>
               <Link to="/">
-                <Button>Back</Button>
+                <Button variant="secondary">Back</Button>
               </Link>
             </Form.Group>
           </Form>

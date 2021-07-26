@@ -129,6 +129,15 @@ export class UserView extends React.Component {
                 />
               </Form.Group>
 
+              <Form.Group controlId="password">
+                <Form.Label>Password: </Form.Label><FormControl
+                  type="text"
+                  name="password"
+                  placeholder="Enter your current or new password."
+                  onChange={(e) => this.handleChange(e)}
+                />
+              </Form.Group>
+
               <Form.Group controlId="email">
                 <Form.Label>Email: </Form.Label><FormControl
                   type="text"
@@ -193,6 +202,7 @@ export class UserView extends React.Component {
         <Row className="user-view">
           <Col md={11}>
             <Button variant="danger" onClick={() => { this.deleteUser(); }}> Delete Account</Button>
+            <p>WARNING! This action cannot be undone.</p>
           </Col>
         </Row>
       </div>
