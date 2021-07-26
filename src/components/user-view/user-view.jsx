@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Moment from 'moment';
-import { Form, Button, Row, Col, Card } from 'react-bootstrap';
+import { Form, Button, Row, Col, Card, FormControl } from 'react-bootstrap';
 import { BrowserRouter as Link } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
@@ -9,13 +9,13 @@ import './user-view.scss';
 
 export class UserView extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      username: null,
-      password: null,
-      email: null,
-      birthday: null,
+      username: '',
+      password: '',
+      email: '',
+      birthday: '',
       favoriteMovies: []
     };
   }
@@ -24,6 +24,7 @@ export class UserView extends React.Component {
     let accessToken = localStorage.getItem('token');
     this.getUser(accessToken);
   }
+
   // Retrieves and sets user data
   getUser(token) {
     let url = 'https://a-movies-api.herokuapp.com/users/' + localStorage.getItem('user');
@@ -79,14 +80,29 @@ export class UserView extends React.Component {
     let url = 'https://a-movies-api.herokuapp.com/users/' + localStorage.getItem('user');
 
     axios.put(url, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
+      username: this.state.username,
+      password: this.state.password,
+      email: this.state.email,
+      birthday: this.state.birthday
+    },
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      })
       .then((response) => {
+        localStorage.setItem('user', response.data.username)
+        alert(user + ' has been updated!')
 
       })
       .catch(function (error) {
         console.log(error);
       });
+  }
+  // Handles the change of user data
+  handleChange(e) {
+    let { name, value } = e.target;
+    this.setState({
+      [name]: value
+    })
   }
 
   render() {
@@ -100,34 +116,78 @@ export class UserView extends React.Component {
 
         <Row className="user-view">
           <Col md={11}>
-            <h5>My Profile</h5>
-            <p>Username: {this.state.username}<br />
-              Email: {this.state.email}<br />
-              Birthday: {this.state.birthday}<br />
-              Favorites: <br />
-            </p>
+            <Form>
+              <h5>My Profile</h5>
+
+              <Form.Group controlId="username">
+                <Form.Label>Username: </Form.Label><FormControl
+                  type="text"
+                  name="username"
+                  placeholder={this.state.username}
+                  value={this.state.username}
+                  onChange={(e) => this.handleChange(e)}
+                />
+              </Form.Group>
+
+              <Form.Group controlId="email">
+                <Form.Label>Email: </Form.Label><FormControl
+                  type="text"
+                  name="email"
+                  placeholder={this.state.email}
+                  value={this.state.email}
+                  onChange={(e) => this.handleChange(e)}
+                />
+              </Form.Group>
+
+              <Form.Group controlId="birthday">
+                <Form.Label>Birthday: </Form.Label><FormControl
+                  type="text"
+                  name="birthday"
+                  placeholder={this.state.birthday}
+                  value={this.state.birthday}
+                  onChange={(e) => this.handleChange(e)}
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Button
+                  type="submit"
+                  onClick={this.updateUser}>Save Changes
+                </Button>
+                <Link to="/">
+                  <Button>Back</Button>
+                </Link>
+              </Form.Group>
+            </Form>
+
+            Favorites: <br />
           </Col>
         </Row>
 
         <Row className="user-view favorites">
-          {movieList.map((movie) => {
-            return (
-              <Col md={4}>
-                <Card className="movie-info favorites">
-                  <div className="image">
-                    <Card.Img variant="top" src={movie.ImageURL} />
-                  </div>
-                  <Card.Body>
-                    <Card.Title>{movie.Title}</Card.Title>
-                    <Link to={`/movies/${movie._id}`}>
-                      <Button variant="primary">Open</Button>
-                    </Link>
-                    <Button variant="secondary" onClick={() => { this.removeFavorite(movie); }}>Remove</Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            )
-          })}
+          {
+            movieList.length === 0
+              ? <Col md={8}>You have no favorite movies!</Col>
+              : movieList.map((movie) => {
+                return (
+                  <Col md={4}>
+                    <Card className="movie-info favorites">
+                      <div className="image">
+                        <Card.Img variant="top" src={movie.ImageURL} />
+                      </div>
+                      <Card.Body>
+                        <Card.Title>{movie.Title}</Card.Title>
+                        <Link to={`/movies/${movie._id}`}>
+                          <Button variant="primary">Open</Button>
+                        </Link>
+                        <Button variant="secondary" onClick={() => { this.removeFavorite(movie); }}>Remove</Button>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                )
+              }
+              )}
+
         </Row>
 
         <Row className="user-view">
