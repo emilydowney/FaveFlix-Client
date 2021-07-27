@@ -77,20 +77,21 @@ export class UserView extends React.Component {
   }
   // Function to update user's info
   updateUser() {
-    const token = localStorage.getItem('token');
     let url = 'https://a-movies-api.herokuapp.com/users/' + localStorage.getItem('user');
+    let token = localStorage.getItem('token');
 
     axios.put(url, {
-      username: this.state.username,
-      password: this.state.password.required,
-      email: this.state.email,
-      birthday: this.state.birthday
-    },
-      {
-        headers: { Authorization: `Bearer ${token}` }
-      })
+      headers: { Authorization: `Bearer ${token}` }
+    })
       .then((response) => {
-        localStorage.setItem('user', response.data.username)
+        this.setState(
+          {
+            username: response.data.username,
+            password: response.data.password.required,
+            email: response.data.email,
+            birthday: response.data.birthday
+          }
+        )
         alert(user + ' has been updated!')
 
       })
@@ -159,7 +160,6 @@ export class UserView extends React.Component {
 
               <Form.Group>
                 <Button
-                  type="submit"
                   onClick={this.updateUser()}>Save Changes
                 </Button>
                 <Link to="/">
