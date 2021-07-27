@@ -12,10 +12,10 @@ export class UserView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: '',
-      email: '',
-      birthday: '',
+      Username: '',
+      Password: '',
+      Email: '',
+      Birthday: '',
       favoriteMovies: []
     };
   }
@@ -34,13 +34,13 @@ export class UserView extends React.Component {
       .then((response) => {
         console.log(response.data)
         this.setState({
-          username: response.data.Username,
-          password: response.data.Password,
-          email: response.data.Email,
-          birthday: Moment(response.data.Birthday).utc().format('ll'),
+          Username: response.data.Username,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          Birthday: Moment(response.data.Birthday).utc().format('MM-DD-YYYY'),
           favoriteMovies: response.data.Favorites
         });
-      }); aq
+      });
   }
   // Function to delete user profile
   deleteUser() {
@@ -77,23 +77,26 @@ export class UserView extends React.Component {
   }
   // Function to update user's info
   updateUser() {
-    let url = 'https://a-movies-api.herokuapp.com/users/' + localStorage.getItem('user');
     let token = localStorage.getItem('token');
+    let url = 'https://a-movies-api.herokuapp.com/users/' + localStorage.getItem('user');
 
-    axios.put(url, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
+    axios.put(url,
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      })
       .then((response) => {
         this.setState(
           {
-            username: response.data.username,
-            password: response.data.password.required,
-            email: response.data.email,
-            birthday: response.data.birthday
+            Username: response.data.Username,
+            Password: response.data.Password,
+            Email: response.data.Email,
+            Birthday: response.data.Birthday
           }
-        )
-        alert(user + ' has been updated!')
-
+        );
+        console.log(response.data);
+        localStorage.setItem('user', response.data.Username);
+        alert('Profile has been updated!');
+        window.open('/users/${user}', '_self');
       })
       .catch(function (error) {
         console.log(error);
@@ -120,40 +123,52 @@ export class UserView extends React.Component {
           <Col md={11}>
             <Form>
               <h5>My Profile</h5>
+              <p>Current user information.<br />
+                Username: {this.state.Username}<br />
+                Email: {this.state.Email}<br />
+                Birthday: {this.state.Birthday}</p>
 
               <Form.Group controlId="username">
-                <Form.Label>Username: </Form.Label><FormControl
+                <Form.Label>Username: </Form.Label>
+                <FormControl
                   type="text"
                   name="username"
-                  placeholder={this.state.username}
+                  placeholder="Change username"
+                  value={this.Username}
                   onChange={(e) => this.handleChange(e)}
                 />
               </Form.Group>
 
               <Form.Group controlId="password">
-                <Form.Label>Password: </Form.Label><FormControl
+                <Form.Label>Password: </Form.Label>
+                <FormControl
                   type="text"
                   name="password"
                   placeholder="Enter your current or new password."
+                  value={this.Password}
                   onChange={(e) => this.handleChange(e)}
                   required
                 />
               </Form.Group>
 
               <Form.Group controlId="email">
-                <Form.Label>Email: </Form.Label><FormControl
+                <Form.Label>Email: </Form.Label>
+                <FormControl
                   type="text"
                   name="email"
-                  placeholder={this.state.email}
+                  placeholder="Change email"
+                  value={this.Email}
                   onChange={(e) => this.handleChange(e)}
                 />
               </Form.Group>
 
               <Form.Group controlId="birthday">
-                <Form.Label>Birthday: </Form.Label><FormControl
+                <Form.Label>Birthday: </Form.Label>
+                <FormControl
                   type="text"
                   name="birthday"
-                  placeholder={this.state.birthday}
+                  placeholder="Change birthday"
+                  value={this.Birthday}
                   onChange={(e) => this.handleChange(e)}
                 />
               </Form.Group>
@@ -179,7 +194,7 @@ export class UserView extends React.Component {
               : movieList.map((movie) => {
                 return (
                   <Col md={4}>
-                    <Card className="movie-info favorites">
+                    <Card key={movie} className="movie-info favorites">
                       <div className="image">
                         <Card.Img variant="top" src={movie.ImageURL} />
                       </div>
