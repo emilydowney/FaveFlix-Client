@@ -40,7 +40,7 @@ export class UserView extends React.Component {
           birthday: Moment(response.data.Birthday).utc().format('ll'),
           favoriteMovies: response.data.Favorites
         });
-      });
+      }); aq
   }
   // Function to delete user profile
   deleteUser() {
@@ -77,11 +77,12 @@ export class UserView extends React.Component {
   }
   // Function to update user's info
   updateUser() {
+    const token = localStorage.getItem('token');
     let url = 'https://a-movies-api.herokuapp.com/users/' + localStorage.getItem('user');
 
     axios.put(url, {
       username: this.state.username,
-      password: this.state.password,
+      password: this.state.password.required,
       email: this.state.email,
       birthday: this.state.birthday
     },
@@ -124,7 +125,6 @@ export class UserView extends React.Component {
                   type="text"
                   name="username"
                   placeholder={this.state.username}
-                  value={this.state.username}
                   onChange={(e) => this.handleChange(e)}
                 />
               </Form.Group>
@@ -135,6 +135,7 @@ export class UserView extends React.Component {
                   name="password"
                   placeholder="Enter your current or new password."
                   onChange={(e) => this.handleChange(e)}
+                  required
                 />
               </Form.Group>
 
@@ -143,7 +144,6 @@ export class UserView extends React.Component {
                   type="text"
                   name="email"
                   placeholder={this.state.email}
-                  value={this.state.email}
                   onChange={(e) => this.handleChange(e)}
                 />
               </Form.Group>
@@ -153,7 +153,6 @@ export class UserView extends React.Component {
                   type="text"
                   name="birthday"
                   placeholder={this.state.birthday}
-                  value={this.state.birthday}
                   onChange={(e) => this.handleChange(e)}
                 />
               </Form.Group>
@@ -161,7 +160,7 @@ export class UserView extends React.Component {
               <Form.Group>
                 <Button
                   type="submit"
-                  onClick={this.updateUser}>Save Changes
+                  onClick={this.updateUser()}>Save Changes
                 </Button>
                 <Link to="/">
                   <Button>Back</Button>
