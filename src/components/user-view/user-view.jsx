@@ -160,7 +160,7 @@ export class UserView extends React.Component {
 
               <Form.Group>
                 <Button
-                  onClick={this.updateUser()}>Save Changes
+                  onClick={() => { this.updateUser(); }}>Save Changes
                 </Button>
                 <Link to="/">
                   <Button>Back</Button>

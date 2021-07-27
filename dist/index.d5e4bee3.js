@@ -40297,7 +40297,9 @@ class UserView extends _reactDefault.default.Component {
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
-            onClick: this.updateUser(),
+            onClick: ()=>{
+                this.updateUser();
+            },
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
                 lineNumber: 162
