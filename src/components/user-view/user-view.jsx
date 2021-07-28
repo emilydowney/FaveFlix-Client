@@ -16,7 +16,8 @@ export class UserView extends React.Component {
       Password: '',
       Email: '',
       Birthday: '',
-      favoriteMovies: []
+      favoriteMovies: [],
+      validated: ''
     };
   }
 
@@ -29,7 +30,9 @@ export class UserView extends React.Component {
   getUser(token) {
     let url = 'https://a-movies-api.herokuapp.com/users/' + localStorage.getItem('user');
     axios.get(url, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
     })
       .then((response) => {
         console.log(response.data)
@@ -65,7 +68,9 @@ export class UserView extends React.Component {
     const url = 'https://a-movies-api.herokuapp.com/users/' + localStorage.getItem('user') + '/favorites/' + movie._id;
 
     axios.delete(url, {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     })
       .then((response) => {
         this.componentDidMount();
@@ -76,15 +81,26 @@ export class UserView extends React.Component {
       });
   }
   // Function to update user's info
-  updateUser() {
-    let token = localStorage.getItem('token');
+  updateUser(e, newUsername, newPassword, newEmail, newBirthday) {
+    e.preventDefault();
+
+    const token = localStorage.getItem('token');
     let url = 'https://a-movies-api.herokuapp.com/users/' + localStorage.getItem('user');
 
     axios.put(url,
       {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        data: {
+          Username: newUsername ? newUsername : this.state.Username,
+          Password: newPassword ? newPassword : this.state.Password,
+          Email: newEmail ? newEmail : this.state.Email,
+          Birthday: newBirthday ? newBirthday : this.state.Birthday
+        }
       })
       .then((response) => {
+        alert('Profile has been updated!');
         this.setState(
           {
             Username: response.data.Username,
@@ -94,20 +110,28 @@ export class UserView extends React.Component {
           }
         );
         console.log(response.data);
-        localStorage.setItem('user', response.data.Username);
-        alert('Profile has been updated!');
-        window.open('/users/${user}', '_self');
+        localStorage.setItem('user', this.state.Username);
+        window.open('/users/${username}', '_self');
       })
       .catch(function (error) {
         console.log(error);
       });
   }
-  // Handles the change of user data
-  handleChange(e) {
-    let { name, value } = e.target;
-    this.setState({
-      [name]: value
-    })
+
+  setUsername(input) {
+    this.Username = input;
+  }
+
+  setPassword(input) {
+    this.Password = input;
+  }
+
+  setEmail(input) {
+    this.Email = input;
+  }
+
+  setBirthday(input) {
+    this.Birthday = input;
   }
 
   render() {
@@ -121,12 +145,13 @@ export class UserView extends React.Component {
 
         <Row className="user-view">
           <Col md={11}>
-            <Form>
-              <h5>My Profile</h5>
-              <p>Current user information.<br />
-                Username: {this.state.Username}<br />
-                Email: {this.state.Email}<br />
-                Birthday: {this.state.Birthday}</p>
+            <h5>My Profile</h5>
+            <p>Current user information.<br />
+              Username: {this.state.Username}<br />
+              Email: {this.state.Email}<br />
+              Birthday: {this.state.Birthday}</p>
+
+            <Form onSubmit={(e) => this.updateUser(e, this.Username, this.Password, this.Email, this.Birthday)}>
 
               <Form.Group controlId="username">
                 <Form.Label>Username: </Form.Label>
@@ -134,8 +159,7 @@ export class UserView extends React.Component {
                   type="text"
                   name="username"
                   placeholder="Change username"
-                  value={this.Username}
-                  onChange={(e) => this.handleChange(e)}
+                  onChange={(e) => this.setUsername(e.target.value)}
                 />
               </Form.Group>
 
@@ -145,8 +169,7 @@ export class UserView extends React.Component {
                   type="text"
                   name="password"
                   placeholder="Enter your current or new password."
-                  value={this.Password}
-                  onChange={(e) => this.handleChange(e)}
+                  onChange={(e) => this.setPassword(e.target.value)}
                   required
                 />
               </Form.Group>
@@ -157,8 +180,7 @@ export class UserView extends React.Component {
                   type="text"
                   name="email"
                   placeholder="Change email"
-                  value={this.Email}
-                  onChange={(e) => this.handleChange(e)}
+                  onChange={(e) => this.setEmail(e.target.value)}
                 />
               </Form.Group>
 
@@ -169,13 +191,12 @@ export class UserView extends React.Component {
                   name="birthday"
                   placeholder="Change birthday"
                   value={this.Birthday}
-                  onChange={(e) => this.handleChange(e)}
+                  onChange={(e) => this.setBirthday(e.target.value)}
                 />
               </Form.Group>
 
               <Form.Group>
-                <Button
-                  onClick={() => { this.updateUser(); }}>Save Changes
+                <Button type="submit">Save Changes
                 </Button>
                 <Link to="/">
                   <Button>Back</Button>
