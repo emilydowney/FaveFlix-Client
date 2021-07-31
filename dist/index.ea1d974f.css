@@ -179,6 +179,14 @@ div.movie-info.favorites.card {
   width: 100%;
 }
 
+#link-dark {
+  color: #353535;
+}
+
+#link-dark:hover {
+  text-decoration: underline;
+}
+
 .navbar-brand {
   margin-left: 5px;
 }

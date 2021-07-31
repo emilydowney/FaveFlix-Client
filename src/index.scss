@@ -11,6 +11,14 @@ $secondary-button: #353535;
   width: 100%;
 }
 
+#link-dark {
+    color: $secondary-button;
+  }
+
+  #link-dark:hover {
+    text-decoration: underline;
+  }
+
 .navbar-brand {
   margin-left: 5px;
 }

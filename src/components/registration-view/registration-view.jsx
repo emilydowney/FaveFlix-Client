@@ -117,7 +117,7 @@ export function RegistrationView(props) {
         </Col>
 
         <Col id="img" md={6}>
-          <img className="main-logo" src="https://cdn4.iconfinder.com/data/icons/online-marketing-hand-drawn-vol-1/52/cinema__movie__reel__video__videoreel__film__media-1024.png" />
+          <img className="main-logo" alt="FaveFlix movie logo" src="https://cdn4.iconfinder.com/data/icons/online-marketing-hand-drawn-vol-1/52/cinema__movie__reel__video__videoreel__film__media-1024.png" />
         </Col>
       </Row>
     </div>

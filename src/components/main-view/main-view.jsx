@@ -104,12 +104,13 @@ export class MainView extends React.Component {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
-                <Link className="nav-link" to="/">Home</Link>
-                <Link className="nav-link" to="/">Movies</Link>
-                <Link className="nav-link" to="/users/${user}">Profile</Link>
+                <Link id="link-dark" className="nav-link" to="/">Home</Link>
+                <Link id="link-dark" className="nav-link" to="/">Movies</Link>
+                <Link id="link-dark" className="nav-link" to="/users/${user}">Profile</Link>
                 <Link to="/">
                   <Button
                     variant="link"
+                    id="link-dark"
                     className="nav-link"
                     onClick={() => this.onLoggedOut()}>Logout
                   </Button>

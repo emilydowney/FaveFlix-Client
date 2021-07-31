@@ -146,13 +146,15 @@ export class UserView extends React.Component {
 
         <Row className="user-view">
           <Col md={11}>
-            <h5>My Profile</h5>
-            <p>Current user information.<br />
+            <h4>My Profile</h4>
+            <p>
               Username: {this.state.Username}<br />
               Email: {this.state.Email}<br />
               Birthday: {this.state.Birthday}</p>
 
             <Form onSubmit={(e) => this.updateUser(e, this.Username, this.Password, this.Email, this.Birthday)}>
+              <h5>Update Information</h5>
+              <p>Use the following form to update your profile information.</p>
 
               <Form.Group controlId="username">
                 <Form.Label>Username: </Form.Label>
@@ -200,12 +202,12 @@ export class UserView extends React.Component {
                 <Button type="submit">Save Changes
                 </Button>
                 <Link to="/">
-                  <Button>Back</Button>
+                  <Button variant="secondary">Back</Button>
                 </Link>
               </Form.Group>
             </Form>
 
-            Favorites: <br />
+            Favorite Movies: <br />
           </Col>
         </Row>
 

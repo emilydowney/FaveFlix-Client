@@ -22195,6 +22195,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
+            id: "link-dark",
             className: "nav-link",
             to: "/",
             __source: {
@@ -22203,6 +22204,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __self: this
         }, "Home"), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
+            id: "link-dark",
             className: "nav-link",
             to: "/",
             __source: {
@@ -22211,6 +22213,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __self: this
         }, "Movies"), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
+            id: "link-dark",
             className: "nav-link",
             to: "/users/${user}",
             __source: {
@@ -22227,6 +22230,7 @@ class MainView extends _reactDefault.default.Component {
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
             variant: "link",
+            id: "link-dark",
             className: "nav-link",
             onClick: ()=>this.onLoggedOut()
             ,
@@ -22239,7 +22243,7 @@ class MainView extends _reactDefault.default.Component {
             inline: true,
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/main-view/main-view.jsx",
-                lineNumber: 118
+                lineNumber: 119
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.FormControl, {
@@ -22248,21 +22252,21 @@ class MainView extends _reactDefault.default.Component {
             className: "mr-sm-2",
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/main-view/main-view.jsx",
-                lineNumber: 119
+                lineNumber: 120
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
             variant: "outline-primary",
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/main-view/main-view.jsx",
-                lineNumber: 123
+                lineNumber: 124
             },
             __self: this
         }, "Search"))))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
             className: "main-view justify-content-md-center",
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/main-view/main-view.jsx",
-                lineNumber: 129
+                lineNumber: 130
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22285,7 +22289,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/main-view/main-view.jsx",
-                lineNumber: 131
+                lineNumber: 132
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22298,7 +22302,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/main-view/main-view.jsx",
-                lineNumber: 144
+                lineNumber: 145
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22320,7 +22324,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/main-view/main-view.jsx",
-                lineNumber: 152
+                lineNumber: 153
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22342,7 +22346,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/main-view/main-view.jsx",
-                lineNumber: 163
+                lineNumber: 164
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22364,7 +22368,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/main-view/main-view.jsx",
-                lineNumber: 174
+                lineNumber: 175
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22388,7 +22392,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/main-view/main-view.jsx",
-                lineNumber: 185
+                lineNumber: 186
             },
             __self: this
         }))));
@@ -39096,6 +39100,7 @@ function LoginView(props) {
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement("img", {
         className: "main-logo",
+        alt: "FaveFlix movie logo",
         src: "https://cdn4.iconfinder.com/data/icons/online-marketing-hand-drawn-vol-1/52/cinema__movie__reel__video__videoreel__film__media-1024.png",
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/login-view/login-view.jsx",
@@ -39523,6 +39528,7 @@ function RegistrationView(props) {
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement("img", {
         className: "main-logo",
+        alt: "FaveFlix movie logo",
         src: "https://cdn4.iconfinder.com/data/icons/online-marketing-hand-drawn-vol-1/52/cinema__movie__reel__video__videoreel__film__media-1024.png",
         __source: {
             fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/registration-view/registration-view.jsx",
@@ -40196,7 +40202,7 @@ class UserView extends _reactDefault.default.Component {
                 lineNumber: 148
             },
             __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement("h5", {
+        }, /*#__PURE__*/ _reactDefault.default.createElement("h4", {
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
                 lineNumber: 149
@@ -40208,13 +40214,7 @@ class UserView extends _reactDefault.default.Component {
                 lineNumber: 150
             },
             __self: this
-        }, "Current user information.", /*#__PURE__*/ _reactDefault.default.createElement("br", {
-            __source: {
-                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 150
-            },
-            __self: this
-        }), "Username: ", this.state.Username, /*#__PURE__*/ _reactDefault.default.createElement("br", {
+        }, "Username: ", this.state.Username, /*#__PURE__*/ _reactDefault.default.createElement("br", {
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
                 lineNumber: 151
@@ -40234,17 +40234,29 @@ class UserView extends _reactDefault.default.Component {
                 lineNumber: 155
             },
             __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
-            controlId: "username",
+        }, /*#__PURE__*/ _reactDefault.default.createElement("h5", {
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+                lineNumber: 156
+            },
+            __self: this
+        }, "Update Information"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
                 lineNumber: 157
             },
             __self: this
+        }, "Use the following form to update your profile information."), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
+            controlId: "username",
+            __source: {
+                fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
+                lineNumber: 159
+            },
+            __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, {
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 158
+                lineNumber: 160
             },
             __self: this
         }, "Username: "), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.FormControl, {
@@ -40255,20 +40267,20 @@ class UserView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 159
+                lineNumber: 161
             },
             __self: this
         })), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
             controlId: "password",
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 167
+                lineNumber: 169
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, {
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 168
+                lineNumber: 170
             },
             __self: this
         }, "Password: "), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.FormControl, {
@@ -40280,20 +40292,20 @@ class UserView extends _reactDefault.default.Component {
             required: true,
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 169
+                lineNumber: 171
             },
             __self: this
         })), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
             controlId: "email",
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 178
+                lineNumber: 180
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, {
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 179
+                lineNumber: 181
             },
             __self: this
         }, "Email: "), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.FormControl, {
@@ -40304,20 +40316,20 @@ class UserView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 180
+                lineNumber: 182
             },
             __self: this
         })), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
             controlId: "birthday",
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 188
+                lineNumber: 190
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, {
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 189
+                lineNumber: 191
             },
             __self: this
         }, "Birthday: "), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.FormControl, {
@@ -40329,53 +40341,54 @@ class UserView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 190
+                lineNumber: 192
             },
             __self: this
         })), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 199
+                lineNumber: 201
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
             type: "submit",
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 200
+                lineNumber: 202
             },
             __self: this
         }, "Save Changes"), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: "/",
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 202
+                lineNumber: 204
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
+            variant: "secondary",
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 203
+                lineNumber: 205
             },
             __self: this
-        }, "Back")))), "Favorites: ", /*#__PURE__*/ _reactDefault.default.createElement("br", {
+        }, "Back")))), "Favorite Movies: ", /*#__PURE__*/ _reactDefault.default.createElement("br", {
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 208
+                lineNumber: 210
             },
             __self: this
         }))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
             className: "user-view favorites",
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 212
+                lineNumber: 214
             },
             __self: this
         }, movieList.length === 0 ? /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
             md: 8,
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 215
+                lineNumber: 217
             },
             __self: this
         }, "You have no favorite movies!") : movieList.map((movie)=>{
@@ -40383,7 +40396,7 @@ class UserView extends _reactDefault.default.Component {
                 md: 4,
                 __source: {
                     fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                    lineNumber: 218
+                    lineNumber: 220
                 },
                 __self: this
             }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card, {
@@ -40391,14 +40404,14 @@ class UserView extends _reactDefault.default.Component {
                 className: "movie-info favorites",
                 __source: {
                     fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                    lineNumber: 219
+                    lineNumber: 221
                 },
                 __self: this
             }, /*#__PURE__*/ _reactDefault.default.createElement("div", {
                 className: "image",
                 __source: {
                     fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                    lineNumber: 220
+                    lineNumber: 222
                 },
                 __self: this
             }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Img, {
@@ -40406,33 +40419,33 @@ class UserView extends _reactDefault.default.Component {
                 src: movie.ImageURL,
                 __source: {
                     fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                    lineNumber: 221
+                    lineNumber: 223
                 },
                 __self: this
             })), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Body, {
                 __source: {
                     fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                    lineNumber: 223
+                    lineNumber: 225
                 },
                 __self: this
             }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Title, {
                 __source: {
                     fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                    lineNumber: 224
+                    lineNumber: 226
                 },
                 __self: this
             }, movie.Title), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
                 to: `/movies/${movie._id}`,
                 __source: {
                     fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                    lineNumber: 225
+                    lineNumber: 227
                 },
                 __self: this
             }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
                 variant: "primary",
                 __source: {
                     fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                    lineNumber: 226
+                    lineNumber: 228
                 },
                 __self: this
             }, "Open")), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
@@ -40442,7 +40455,7 @@ class UserView extends _reactDefault.default.Component {
                 },
                 __source: {
                     fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                    lineNumber: 228
+                    lineNumber: 230
                 },
                 __self: this
             }, "Remove")))));
@@ -40450,14 +40463,14 @@ class UserView extends _reactDefault.default.Component {
             className: "user-view",
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 238
+                lineNumber: 240
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
             md: 11,
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 239
+                lineNumber: 241
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
@@ -40467,13 +40480,13 @@ class UserView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 240
+                lineNumber: 242
             },
             __self: this
         }, " Delete Account"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
             __source: {
                 fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
-                lineNumber: 241
+                lineNumber: 243
             },
             __self: this
         }, "WARNING! This action cannot be undone.")))));
