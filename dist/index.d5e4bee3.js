@@ -39583,6 +39583,7 @@ class MovieCard extends _reactDefault.default.Component {
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Img, {
+            className: "poster",
             variant: "top",
             src: movie.ImageURL,
             __source: {
@@ -40393,7 +40394,7 @@ class UserView extends _reactDefault.default.Component {
             __self: this
         }, "You have no favorite movies!") : movieList.map((movie)=>{
             return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
-                md: 4,
+                md: 6,
                 __source: {
                     fileName: "/Users/emilydowney/Desktop/Movies-client/src/components/user-view/user-view.jsx",
                     lineNumber: 220

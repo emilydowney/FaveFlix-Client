@@ -94,6 +94,17 @@ div.card-body {
 div.card-title.h5 {
   font-family: "Oswald";
 }
+
+@media all and (max-width: 800px) {
+  div.image {
+    text-align: center;
+  }
+
+  .poster {
+    max-width: 300px;
+    margin: auto;
+  }
+}
 h5.movie-title {
   font-family: "Oswald";
   font-size: 32px;

@@ -217,7 +217,7 @@ export class UserView extends React.Component {
               ? <Col md={8}>You have no favorite movies!</Col>
               : movieList.map((movie) => {
                 return (
-                  <Col md={4}>
+                  <Col md={6}>
                     <Card key={movie} className="movie-info favorites">
                       <div className="image">
                         <Card.Img variant="top" src={movie.ImageURL} />
