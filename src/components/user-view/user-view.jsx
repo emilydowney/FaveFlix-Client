@@ -89,16 +89,17 @@ export class UserView extends React.Component {
 
     axios.put(url,
       {
+        Username: newUsername ? newUsername : this.state.Username,
+        Password: newPassword ? newPassword : this.state.Password,
+        Email: newEmail ? newEmail : this.state.Email,
+        Birthday: newBirthday ? newBirthday : this.state.Birthday
+      },
+      {
         headers: {
           Authorization: `Bearer ${token}`
         },
-        data: {
-          Username: newUsername ? newUsername : this.state.Username,
-          Password: newPassword ? newPassword : this.state.Password,
-          Email: newEmail ? newEmail : this.state.Email,
-          Birthday: newBirthday ? newBirthday : this.state.Birthday
-        }
-      })
+      }
+    )
       .then((response) => {
         alert('Profile has been updated!');
         this.setState(
@@ -111,7 +112,7 @@ export class UserView extends React.Component {
         );
         console.log(response.data);
         localStorage.setItem('user', this.state.Username);
-        window.open('/users/${username}', '_self');
+        window.location.reload(false);
       })
       .catch(function (error) {
         console.log(error);
@@ -166,7 +167,7 @@ export class UserView extends React.Component {
               <Form.Group controlId="password">
                 <Form.Label>Password: </Form.Label>
                 <FormControl
-                  type="text"
+                  type="password"
                   name="password"
                   placeholder="Enter your current or new password."
                   onChange={(e) => this.setPassword(e.target.value)}
@@ -187,7 +188,7 @@ export class UserView extends React.Component {
               <Form.Group controlId="birthday">
                 <Form.Label>Birthday: </Form.Label>
                 <FormControl
-                  type="text"
+                  type="date"
                   name="birthday"
                   placeholder="Change birthday"
                   value={this.Birthday}
