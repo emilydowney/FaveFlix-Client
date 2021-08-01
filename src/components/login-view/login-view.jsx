@@ -49,6 +49,7 @@ export function LoginView(props) {
                 type="text"
                 placeholder="Username"
                 value={username}
+                minlength="5"
                 onChange={e => setUsername(e.target.value)}
                 required />
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -62,6 +63,7 @@ export function LoginView(props) {
               <Form.Control
                 type="password"
                 placeholder="Password"
+                minlength="5"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 required />

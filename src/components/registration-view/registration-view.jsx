@@ -54,11 +54,12 @@ export function RegistrationView(props) {
                   type="text"
                   placeholder="Username"
                   value={username}
+                  minlength="5"
                   onChange={e => setUsername(e.target.value)}
                   required />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 <Form.Control.Feedback type="invalid">
-                  Please create a username.
+                  Please create a username at least 5 characters in length. Alphanumeric characters only.
                 </Form.Control.Feedback>
               </Form.Label>
             </Form.Group>
@@ -69,12 +70,13 @@ export function RegistrationView(props) {
                 <Form.Control
                   type="password"
                   placeholder="Password"
+                  minlength="5"
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                   required />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 <Form.Control.Feedback type="invalid">
-                  Please create a password.
+                  Please create a password at least 5 characters in length.
                 </Form.Control.Feedback>
               </Form.Label>
             </Form.Group>

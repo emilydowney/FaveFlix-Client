@@ -17,7 +17,6 @@ export class UserView extends React.Component {
       Email: '',
       Birthday: '',
       favoriteMovies: [],
-      validated: ''
     };
   }
 
@@ -141,6 +140,7 @@ export class UserView extends React.Component {
       return this.state.favoriteMovies.includes(movie._id);
     });
 
+
     return (
       <div className="container">
 
@@ -163,6 +163,7 @@ export class UserView extends React.Component {
                   name="username"
                   placeholder="Change username"
                   onChange={(e) => this.setUsername(e.target.value)}
+                  required
                 />
               </Form.Group>
 
