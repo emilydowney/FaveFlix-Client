@@ -1,3 +1,40 @@
+div.col-md-12 {
+  display: flex;
+  justify-content: center;
+}
+
+input.form-control.search-bar {
+  position: relative;
+  margin-top: 35px;
+  width: 80%;
+}
+.movie-info.card {
+  margin-top: 20px;
+}
+
+.image {
+  max-height: 500px;
+}
+
+div.card-body {
+  background-color: #fff;
+  z-index: 5;
+}
+
+div.card-title.h5 {
+  font-family: "Oswald";
+}
+
+@media all and (max-width: 800px) {
+  div.image {
+    text-align: center;
+  }
+
+  .poster {
+    max-width: 300px;
+    margin: auto;
+  }
+}
 html, div.app-container {
   background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
 }
@@ -57,6 +94,12 @@ div.login.row {
 
 #img {
   text-align: center;
+}
+
+@media all and (max-width: 765px) {
+  #img {
+    margin-top: 30px;
+  }
 }
 div#img.logo {
   margin-top: 40px;
@@ -161,43 +204,6 @@ div.movie-info.favorites.card {
 div.mr-auto.navbar-nav {
   justify-content: flex-end;
 }
-.movie-info.card {
-  margin-top: 20px;
-}
-
-.image {
-  max-height: 500px;
-}
-
-div.card-body {
-  background-color: #fff;
-  z-index: 5;
-}
-
-div.card-title.h5 {
-  font-family: "Oswald";
-}
-
-@media all and (max-width: 800px) {
-  div.image {
-    text-align: center;
-  }
-
-  .poster {
-    max-width: 300px;
-    margin: auto;
-  }
-}
-div.col-md-12 {
-  display: flex;
-  justify-content: center;
-}
-
-input.form-control.search-bar {
-  position: relative;
-  margin-top: 35px;
-  width: 80%;
-}
 .navbar.navbar-expand-lg.navbar-light.bg-light {
   position: fixed;
   top: 0px;
@@ -240,4 +246,4 @@ button.btn.btn-secondary:hover {
   background-color: #2a2b2b;
   transition: 0.5s, ease-in;
 }
-/*# sourceMappingURL=index.ea1d974f.css.map */
+/*# sourceMappingURL=index.37bc8948.css.map */

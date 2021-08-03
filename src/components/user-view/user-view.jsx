@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Moment from 'moment';
 import { Form, Button, Row, Col, Card, FormControl } from 'react-bootstrap';
-import { BrowserRouter as Link } from 'react-router-dom';
+import { BrowserRouter as Link, Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import './user-view.scss';
@@ -161,10 +161,13 @@ export class UserView extends React.Component {
                 <FormControl
                   type="text"
                   name="username"
+                  minLength="5"
                   placeholder="Change username"
                   onChange={(e) => this.setUsername(e.target.value)}
-                  required
                 />
+                <Form.Text id="passwordHelpBlock" muted>
+                  Username must contain a minimum of 5 characters. No special characters.
+                </Form.Text>
               </Form.Group>
 
               <Form.Group controlId="password">
@@ -172,11 +175,16 @@ export class UserView extends React.Component {
                 <FormControl
                   type="password"
                   name="password"
+                  minLength="5"
                   placeholder="Enter your current or new password."
                   onChange={(e) => this.setPassword(e.target.value)}
                   required
                 />
+                <Form.Text className="text-muted">
+                  Password must contain a minimum of 5 characters.
+                </Form.Text>
               </Form.Group>
+
 
               <Form.Group controlId="email">
                 <Form.Label>Email: </Form.Label>
@@ -186,6 +194,9 @@ export class UserView extends React.Component {
                   placeholder="Change email"
                   onChange={(e) => this.setEmail(e.target.value)}
                 />
+                <Form.Text className="text-muted">
+                  Please enter a valid email.
+                </Form.Text>
               </Form.Group>
 
               <Form.Group controlId="birthday">
@@ -218,8 +229,8 @@ export class UserView extends React.Component {
               ? <Col md={8}>You have no favorite movies!</Col>
               : movieList.map((movie) => {
                 return (
-                  <Col md={6}>
-                    <Card key={movie._id} className="movie-info favorites">
+                  <Col key={movie._id} md={6}>
+                    <Card className="movie-info favorites">
                       <div className="image">
                         <Card.Img variant="top" src={movie.ImageURL} />
                       </div>

@@ -75,7 +75,7 @@ class MainView extends React.Component {
     return (
       <Router>
         <Row>
-          <Navbar bg="light" expand="lg" variant="light">
+          <Navbar collapseOnSelect bg="light" expand="lg" variant="light">
             <Navbar.Brand>
               <img
                 className="logo"
@@ -87,7 +87,7 @@ class MainView extends React.Component {
               FaveFlix
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
+            <Navbar.Collapse expland="md" id="basic-navbar-nav">
               <Nav className="ml-auto">
                 <Link id="link-dark" className="nav-link" to="/">Home</Link>
                 <Link id="link-dark" className="nav-link" to="/">Movies</Link>
@@ -109,6 +109,7 @@ class MainView extends React.Component {
             if (!user) return <Col>
               <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
             </Col>
+
             if (movies.length === 0) return <div className="main-view" />;
 
             return <MoviesList movies={movies} />;

@@ -57,6 +57,9 @@ export function RegistrationView(props) {
                   minLength="5"
                   onChange={e => setUsername(e.target.value)}
                   required />
+                <Form.Text className="text-muted">
+                  Username must contain a minimum of 5 characters. No special characters.
+                </Form.Text>
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 <Form.Control.Feedback type="invalid">
                   Please create a username at least 5 characters in length. Alphanumeric characters only.
@@ -74,6 +77,9 @@ export function RegistrationView(props) {
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                   required />
+                <Form.Text className="text-muted">
+                  Password must contain a minimum of 5 characters.
+                </Form.Text>
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 <Form.Control.Feedback type="invalid">
                   Please create a password at least 5 characters in length.
@@ -118,7 +124,7 @@ export function RegistrationView(props) {
           </Form>
         </Col>
 
-        <Col id="img" md={6}>
+        <Col id="img" className="logo" md={6}>
           <img className="main-logo" alt="FaveFlix movie logo" src="https://cdn4.iconfinder.com/data/icons/online-marketing-hand-drawn-vol-1/52/cinema__movie__reel__video__videoreel__film__media-1024.png" />
         </Col>
       </Row>

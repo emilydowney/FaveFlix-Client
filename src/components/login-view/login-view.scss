@@ -67,3 +67,10 @@ div.login.row {
 #img {
   text-align: center;
 }
+
+//Media queries
+@media all and (max-width: 765px) {
+  #img {
+    margin-top: 30px;
+  }
+}
