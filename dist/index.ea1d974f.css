@@ -154,9 +154,11 @@ div.user-view.favorites.row {
 div.movie-info.favorites.card {
   margin-top: 0px;
 }
-
+div.mr-auto.navbar-nav {
+  justify-content: flex-end;
+}
 .movie-info.card {
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .image {
@@ -181,6 +183,16 @@ div.card-title.h5 {
     max-width: 300px;
     margin: auto;
   }
+}
+div.col-md-12 {
+  display: flex;
+  justify-content: center;
+}
+
+input.form-control.search-bar {
+  position: relative;
+  margin-top: 35px;
+  width: 80%;
 }
 .navbar.navbar-expand-lg.navbar-light.bg-light {
   position: fixed;

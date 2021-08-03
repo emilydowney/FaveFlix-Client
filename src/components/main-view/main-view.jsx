@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { setMovies } from '../../actions/actions';
+import { setMovies, setUser } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
 
 import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
@@ -18,20 +18,11 @@ import { UserView } from '../user-view/user-view';
 import './main-view.scss'
 
 class MainView extends React.Component {
-  constructor() {
-    super();
-    // Sets initial states to null
-    this.state = {
-      user: null
-    };
-  }
 
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem('user')
-      });
+      this.props.setUser(localStorage.getItem('user'));
       this.getMovies(accessToken);
       this.getUser(accessToken);
     }
@@ -66,10 +57,7 @@ class MainView extends React.Component {
   // Updates 'user' property in state upon login
   onLoggedIn(authData) {
     console.log(authData);
-    this.setState({
-      user: authData.user.Username,
-      token: authData.token
-    });
+    this.props.setUser(authData.user.Username);
 
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
@@ -79,19 +67,16 @@ class MainView extends React.Component {
   onLoggedOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    this.setState({
-      user: null
-    });
+    this.props.setUser('');
   }
 
   render() {
-    let { movies } = this.props;
-    let { user } = this.state;
+    let { movies, user } = this.props;
 
     return (
       <Router>
         <Row>
-          <Navbar bg="light" expand="lg" variant="light">
+          <Navbar className="container-fluid" bg="light" expand="lg" variant="light">
             <Navbar.Brand>
               <img
                 className="logo"
@@ -104,26 +89,17 @@ class MainView extends React.Component {
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="mr-auto">
+              <Nav className="ml-auto">
                 <Link id="link-dark" className="nav-link" to="/">Home</Link>
                 <Link id="link-dark" className="nav-link" to="/">Movies</Link>
                 <Link id="link-dark" className="nav-link" to="/users/${user}">Profile</Link>
-                <Link to="/">
-                  <Button
-                    variant="link"
-                    id="link-dark"
-                    className="nav-link"
-                    onClick={() => this.onLoggedOut()}>Logout
-                  </Button>
+                <Link
+                  to="/"
+                  id="link-dark"
+                  className="nav-link"
+                  onClick={() => this.onLoggedOut()}>Logout
                 </Link>
               </Nav>
-              <Form inline>
-                <FormControl
-                  type="text"
-                  placeholder="Search"
-                  className="mr-sm-2" />
-                <Button variant="outline-primary">Search</Button>
-              </Form>
             </Navbar.Collapse>
           </Navbar>
         </Row>
@@ -199,7 +175,10 @@ class MainView extends React.Component {
 }
 
 let mapStatetoProps = state => {
-  return { movies: state.movies }
+  return {
+    movies: state.movies,
+    user: state.user
+  }
 }
 
-export default connect(mapStatetoProps, { setMovies })(MainView);
+export default connect(mapStatetoProps, { setMovies, setUser })(MainView);
