@@ -7,10 +7,6 @@ import './movie-view.scss';
 
 export class MovieView extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {};
-  }
   // Adds a movie to a user's favorites list
   addFavorite(movie) {
     const token = localStorage.getItem('token');

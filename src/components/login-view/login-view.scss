@@ -4,10 +4,12 @@ $third-color: #000;
 $header-font: 'Oswald';
 $body-font: 'Montserrat';
 
+// Background
 html, div.app-container {
   background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
 }
 
+//Header content
 div {
   font-family: $body-font;
 }
@@ -48,6 +50,7 @@ div.login.row {
   font-family: $header-font;
 }
 
+// Form/lower content
 #formUsername, #formPassword {
   width: 100%;
 }

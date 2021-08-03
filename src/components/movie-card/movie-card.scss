@@ -19,6 +19,8 @@ div.card-title.h5{
   font-family: $header-font;
 }
 
+// Media queries
+
 @media all and (max-width: 800px) {
   div.image {
     text-align: center;

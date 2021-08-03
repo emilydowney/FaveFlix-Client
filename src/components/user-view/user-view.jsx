@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import Moment from 'moment';
 import { Form, Button, Row, Col, Card, FormControl } from 'react-bootstrap';
@@ -219,7 +219,7 @@ export class UserView extends React.Component {
               : movieList.map((movie) => {
                 return (
                   <Col md={6}>
-                    <Card key={movie} className="movie-info favorites">
+                    <Card key={movie._id} className="movie-info favorites">
                       <div className="image">
                         <Card.Img variant="top" src={movie.ImageURL} />
                       </div>

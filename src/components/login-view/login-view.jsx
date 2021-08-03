@@ -54,7 +54,7 @@ export function LoginView(props) {
                 required />
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">
-                Please input your username.
+                Please input a valid username.
               </Form.Control.Feedback>
             </Form.Group>
 
@@ -69,7 +69,7 @@ export function LoginView(props) {
                 required />
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">
-                Please input your password.
+                Please input a valid password.
               </Form.Control.Feedback>
             </Form.Group>
 

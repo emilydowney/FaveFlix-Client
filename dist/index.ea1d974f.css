@@ -218,18 +218,6 @@ img.d-inline-block.align-top {
   margin-right: 10px;
 }
 
-button.btn.btn-outline-primary {
-  color: #1188a3;
-  border-color: #1188a3;
-}
-
-button.btn.btn-outline-primary:hover {
-  color: #fff;
-  border-color: #fff;
-  background-color: #1188a3;
-  transition: 0.2s ease-in;
-}
-
 button.btn.btn-primary {
   background-color: #1188a3;
 }

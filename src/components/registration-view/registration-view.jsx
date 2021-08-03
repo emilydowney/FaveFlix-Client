@@ -54,7 +54,7 @@ export function RegistrationView(props) {
                   type="text"
                   placeholder="Username"
                   value={username}
-                  minlength="5"
+                  minLength="5"
                   onChange={e => setUsername(e.target.value)}
                   required />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -70,7 +70,7 @@ export function RegistrationView(props) {
                 <Form.Control
                   type="password"
                   placeholder="Password"
-                  minlength="5"
+                  minLength="5"
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                   required />
