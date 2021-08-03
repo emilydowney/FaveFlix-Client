@@ -40,16 +40,15 @@ export class MovieView extends React.Component {
             <span className="value">{movie.Release}</span>
           </div>
           <div className="movie-director">
-            <span className="label">Director:</span>
+            <span className="label">Director: </span>
             <Link to={`/directors/${movie.Director.Name}`}>
-              <Button className="value" variant="link">{movie.Director.Name}
-              </Button>
+              {movie.Director.Name}
             </Link>
           </div>
           <div className="movie-genre">
             <span className="label">Genre: </span>
             <Link to={`/genres/${movie.Genre.Name}`}>
-              <Button className="value" variant="link">{movie.Genre.Name}</Button>
+              {movie.Genre.Name}
             </Link>
           </div>
           <div className="movie-description">
