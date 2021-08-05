@@ -4,6 +4,7 @@ Client-side for a movie application(FaveFlix) that serves several interface view
 Based on existing server-side code (REST API and database). The combined project uses the MERN(MongoDB, Express, React, and Node.js) stack.
 # Links
 A live deploy of the app can be found at https://faveflix.netlify.app/
+
 API used: https://github.com/emilydowney/movie_api
 # Features
 * Allows users to create their own account and login to their personal profile.
