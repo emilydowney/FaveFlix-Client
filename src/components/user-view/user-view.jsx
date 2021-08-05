@@ -55,7 +55,7 @@ export class UserView extends React.Component {
         alert('Account was deleted.');
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        window.location.reload(false);
+        window.open('/', '_self')
       })
       .catch(function (error) {
         console.log(error);

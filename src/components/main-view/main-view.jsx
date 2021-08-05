@@ -106,7 +106,7 @@ class MainView extends React.Component {
         <Row className="main-view justify-content-md-center">
 
           <Route exact path="/" render={() => {
-            if (!user) return <Col>
+            if (!user.length) return <Col>
               <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
             </Col>
 
@@ -116,8 +116,6 @@ class MainView extends React.Component {
           }} />
 
           <Route path="/register" render={() => {
-            if (user) return <Redirect to="/" />
-
             return <Col>
               <RegistrationView />
             </Col>
