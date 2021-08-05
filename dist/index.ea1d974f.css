@@ -58,6 +58,68 @@ div.login.row {
 #img {
   text-align: center;
 }
+
+@media all and (max-width: 765px) {
+  #img {
+    margin-top: 30px;
+  }
+}
+h5.movie-title {
+  font-family: "Oswald";
+  font-size: 32px;
+}
+
+.movie-view {
+  background-color: #ffffff;
+  margin-top: 50px;
+  padding: 20px;
+}
+
+.movie-poster {
+  width: 100%;
+}
+
+button.btn.btn-primary {
+  margin-top: 10px;
+  border-color: #1188a3;
+}
+div.col-md-12 {
+  display: flex;
+  justify-content: center;
+}
+
+input.form-control.search-bar {
+  position: relative;
+  margin-top: 35px;
+  width: 80%;
+}
+.movie-info.card {
+  margin-top: 20px;
+}
+
+.image {
+  max-height: 500px;
+}
+
+div.card-body {
+  background-color: #fff;
+  z-index: 5;
+}
+
+div.card-title.h5 {
+  font-family: "Oswald";
+}
+
+@media all and (max-width: 800px) {
+  div.image {
+    text-align: center;
+  }
+
+  .poster {
+    max-width: 300px;
+    margin: auto;
+  }
+}
 div#img.logo {
   margin-top: 40px;
 }
@@ -81,25 +143,6 @@ input.form-control {
 .back {
   color: #000;
   padding: 6px 12px;
-}
-h5.movie-title {
-  font-family: "Oswald";
-  font-size: 32px;
-}
-
-.movie-view {
-  background-color: #ffffff;
-  margin-top: 50px;
-  padding: 20px;
-}
-
-.movie-poster {
-  width: 100%;
-}
-
-button.btn.btn-primary {
-  margin-top: 10px;
-  border-color: #1188a3;
 }
 h5.director-name {
   font-family: "Oswald";
@@ -160,43 +203,6 @@ div.movie-info.favorites.card {
 }
 div.mr-auto.navbar-nav {
   justify-content: flex-end;
-}
-.movie-info.card {
-  margin-top: 20px;
-}
-
-.image {
-  max-height: 500px;
-}
-
-div.card-body {
-  background-color: #fff;
-  z-index: 5;
-}
-
-div.card-title.h5 {
-  font-family: "Oswald";
-}
-
-@media all and (max-width: 800px) {
-  div.image {
-    text-align: center;
-  }
-
-  .poster {
-    max-width: 300px;
-    margin: auto;
-  }
-}
-div.col-md-12 {
-  display: flex;
-  justify-content: center;
-}
-
-input.form-control.search-bar {
-  position: relative;
-  margin-top: 35px;
-  width: 80%;
 }
 .navbar.navbar-expand-lg.navbar-light.bg-light {
   position: fixed;
