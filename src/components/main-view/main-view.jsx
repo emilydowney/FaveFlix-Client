@@ -55,7 +55,6 @@ class MainView extends React.Component {
 
   // Updates 'user' property in state upon login
   onLoggedIn(authData) {
-    console.log(authData);
     this.props.setUser(authData.user.Username);
 
     localStorage.setItem('token', authData.token);
