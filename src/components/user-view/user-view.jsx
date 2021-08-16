@@ -34,7 +34,6 @@ export class UserView extends React.Component {
       },
     })
       .then((response) => {
-        console.log(response.data)
         this.setState({
           Username: response.data.Username,
           Password: response.data.Password,
@@ -109,7 +108,6 @@ export class UserView extends React.Component {
             Birthday: response.data.Birthday
           }
         );
-        console.log(response.data);
         localStorage.setItem('user', this.state.Username);
         window.location.reload(false);
       })
